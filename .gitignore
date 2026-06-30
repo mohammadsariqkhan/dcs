@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Production
+dist/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vite
+.vite/
+
+# Coverage
+coverage/
