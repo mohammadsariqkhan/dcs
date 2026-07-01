@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Target, Users, Award, Lightbulb, CheckCircle2, TrendingUp, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import TechIcon from '@/components/TechIcon';
 import { Link } from 'react-router-dom';
 
 const fadeUp = {
@@ -20,12 +21,12 @@ const AboutPage = () => {
   ];
 
   const achievements = [
-    '100+ successful data transformation projects',
-    '10+ enterprise clients across 10+ industries',
-    'AWS, Azure, and GCP certified team members',
-    'Published research in ML and data engineering',
-    'Databricks and Snowflake partner certifications',
-    '99% client satisfaction rating',
+    { text: '100+ successful data transformation projects' },
+    { text: '10+ enterprise clients across 10+ industries' },
+    { text: 'AWS, Azure, and GCP certified team members', techs: ['AWS', 'Azure', 'GCP'] },
+    { text: 'Published research in ML and data engineering', techs: ['Python'] },
+    { text: 'Databricks and Snowflake partner certifications', techs: ['Databricks', 'Snowflake'] },
+    { text: '99% client satisfaction rating' },
   ];
 
   const approach = [
@@ -195,8 +196,16 @@ const AboutPage = () => {
                   variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
                   className="card-premium p-5 flex items-center gap-3"
                 >
-                  <CheckCircle2 size={18} className="text-emerald-500 flex-shrink-0" />
-                  <span className="text-sm font-500 text-[hsl(222_47%_18%)]" style={{ fontWeight: 500 }}>{item}</span>
+                  {item.techs ? (
+                    <div className="flex items-center gap-1 flex-shrink-0" aria-label={`Technologies: ${item.techs.join(', ')}`}>
+                      {item.techs.map((tech) => (
+                        <TechIcon key={tech} name={tech} size={18} />
+                      ))}
+                    </div>
+                  ) : (
+                    <CheckCircle2 size={18} className="text-emerald-500 flex-shrink-0" />
+                  )}
+                  <span className="text-sm font-500 text-[hsl(222_47%_18%)]" style={{ fontWeight: 500 }}>{item.text}</span>
                 </motion.div>
               ))}
             </div>

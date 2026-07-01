@@ -324,9 +324,13 @@
   }
 
   /* ── Tech Badge ── */
-  .tech-badge {
+  .tech-badge-with-icon {
     display: inline-flex;
     align-items: center;
+    gap: 8px;
+  }
+
+  .tech-badge {
     padding: 0.375rem 0.875rem;
     background: #ffffff;
     border: 1px solid hsl(214 32% 88%);
@@ -343,6 +347,36 @@
     background: hsl(213 94% 38% / 0.04);
     color: hsl(213 94% 38%);
     box-shadow: 0 2px 8px rgba(10, 40, 100, 0.1);
+  }
+
+  .tech-badge:hover .tech-badge-icon {
+    filter: drop-shadow(0 0 4px hsl(213 94% 38% / 0.25));
+  }
+
+  .tech-pill {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    background: hsl(213 94% 38% / 0.06);
+    color: hsl(213 94% 38%);
+    border: 1px solid hsl(213 94% 38% / 0.12);
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .tech-pill:hover {
+    background: hsl(213 94% 38% / 0.1);
+    border-color: hsl(213 94% 38% / 0.25);
+    box-shadow: 0 2px 6px hsl(213 94% 38% / 0.12);
+  }
+
+  .tech-pill:hover .tech-badge-icon {
+    transform: scale(1.1);
+  }
+
+  .tech-icon-svg,
+  .tech-icon-lucide {
+    display: block;
   }
 
   /* ── Stat Number ── */
@@ -416,5 +450,41 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* ── Logo Marquee ── */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee-reverse linear infinite;
+  }
+
+  .pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+
+  .mask-marquee {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   }
 }

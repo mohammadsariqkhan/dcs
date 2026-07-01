@@ -4,17 +4,24 @@ import { motion } from 'framer-motion';
 import { Target, Eye, Users, Globe, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import TechBadge from '@/components/TechBadge';
 import { Link } from 'react-router-dom';
+import LogoMarquee from '@/components/LogoMarquee';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] } })
 };
 
-const technologies = [
-  'Python', 'SQL', 'Apache Spark', 'Databricks', 'Kafka', 'Snowflake',
-  'Azure', 'AWS', 'GCP', 'TensorFlow', 'PyTorch', 'Power BI', 'Tableau',
+const technologies1 = [
+  'Python', 'SQL', 'Apache Spark', 'Databricks', 'Snowflake',
+  'Azure', 'AWS', 'GCP', 'TensorFlow', 'PyTorch'
+];
+
+const technologies2 = [
   'Docker', 'Kubernetes', 'Terraform', 'Airflow', 'dbt', 'MLflow',
+  'Cloudera', 'Confluent Kafka', 'Qlik', 'Power BI'
+
 ];
 
 const CompanyPage = () => {
@@ -191,20 +198,8 @@ const CompanyPage = () => {
               <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">We work with industry-leading platforms and tools</p>
             </motion.div>
 
-            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              {technologies.map((tech, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.03 }}
-                  className="tech-badge"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
+            <LogoMarquee items={technologies1} speed="35s" />
+            <LogoMarquee items={technologies2} reverse={true} speed="35s" />
           </div>
         </section>
 

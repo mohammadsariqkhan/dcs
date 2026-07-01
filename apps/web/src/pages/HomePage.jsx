@@ -12,6 +12,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StatCard from '@/components/StatCard';
 import ServiceCard from '@/components/ServiceCard';
+import TechBadge from '@/components/TechBadge';
+import TechIcon from '@/components/TechIcon';
+import LogoMarquee from '@/components/LogoMarquee';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -109,7 +112,7 @@ const HomePage = () => {
     { icon: Shield, title: 'Enterprise-Grade Security', description: 'Every solution is designed with security, compliance, and data governance as first-class requirements.' },
   ];
 
-  const partners = ['AWS', 'Azure', 'GCP', 'Databricks', 'Snowflake', 'Tableau', 'dbt', 'Kafka'];
+  const partners = ['AWS', 'Azure', 'GCP', 'Databricks', 'Snowflake', 'dbt', 'Cloudera', 'Confluent Kafka', 'Qlik'];
 
   return (
     <>
@@ -190,10 +193,18 @@ const HomePage = () => {
                   transition={{ duration: 0.6, delay: 0.45 }}
                   className="flex items-center gap-4 flex-wrap"
                 >
-                  {['SOC 2 Certified', 'ISO 27001', 'AWS Partner'].map((badge) => (
-                    <div key={badge} className="flex items-center gap-1.5 text-xs text-white/50">
-                      <CheckCircle2 size={13} className="text-emerald-400" />
-                      {badge}
+                  {[
+                    { label: 'SOC 2 Certified' },
+                    { label: 'ISO 27001' },
+                    { label: 'AWS Partner', tech: 'AWS' },
+                  ].map((badge) => (
+                    <div key={badge.label} className="flex items-center gap-1.5 text-xs text-white/50">
+                      {badge.tech ? (
+                        <TechIcon name={badge.tech} size={14} color="#FF9900" className="opacity-90" />
+                      ) : (
+                        <CheckCircle2 size={13} className="text-emerald-400" />
+                      )}
+                      {badge.label}
                     </div>
                   ))}
                 </motion.div>
@@ -265,21 +276,7 @@ const HomePage = () => {
             <p className="text-center text-xs font-600 text-gray-400 uppercase tracking-widest mb-8" style={{ fontWeight: 600 }}>
               Trusted technology partnerships
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
-              {partners.map((p, i) => (
-                <motion.div
-                  key={p}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="tech-badge text-sm font-600"
-                  style={{ fontWeight: 600, fontSize: '0.875rem' }}
-                >
-                  {p}
-                </motion.div>
-              ))}
-            </div>
+            <LogoMarquee items={partners} speed="25s" />
           </div>
         </section>
 

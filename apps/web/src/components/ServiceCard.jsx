@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import TechBadge from '@/components/TechBadge';
 
 const ServiceCard = ({ icon: Icon, title, description, benefits, technologies, index, onCTAClick }) => {
   return (
@@ -54,12 +54,7 @@ const ServiceCard = ({ icon: Icon, title, description, benefits, technologies, i
         <div className="mb-5">
           <div className="flex flex-wrap gap-1.5">
             {technologies.map((tech, idx) => (
-              <span
-                key={idx}
-                className="text-xs px-2.5 py-1 rounded-full bg-[hsl(213_94%_38%/0.06)] text-[hsl(213_94%_38%)] border border-[hsl(213_94%_38%/0.12)] font-medium"
-              >
-                {tech}
-              </span>
+              <TechBadge key={idx} name={tech} variant="pill" />
             ))}
           </div>
         </div>
