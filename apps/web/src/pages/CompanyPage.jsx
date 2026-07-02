@@ -38,12 +38,13 @@ const CompanyPage = () => {
   ];
 
   const milestones = [
-    { year: '2023', event: 'Company founded by data science veterans with a shared vision for enterprise data transformation' },
-    { year: '2024', event: 'Established our UAE operations, launched dedicated ML practice and AI center of excellence' },
-    { year: '2025', event: 'Reached 10 enterprise clients milestone, expanded service offerings to include cloud solutions' },
-    // { year: '2020', event: 'Achieved AWS Advanced Partner and Azure Expert Partner status, team grew to 50+ specialists' },
-    { year: '2026', event: 'Delivered our 100th project successfully, expanded to 10+ enterprise clients across 10+ industries' },
-    // { year: '2024', event: 'Launched Generative AI practice, established Databricks Elite partnership, opened APAC operations' },
+
+    { year: '2015', event: 'Company founded by data science veterans with a shared vision for enterprise data transformation' },
+    { year: '2016', event: 'Reached 10 enterprise clients milestone, expanded service offerings to include cloud solutions' },
+    { year: '2018', event: 'Established our UAE operations, launched dedicated ML practice and AI center of excellence' },
+    { year: '2020', event: 'Achieved AWS Advanced Partner and Azure Expert Partner status, team grew to 50+ specialists' },
+    { year: '2022', event: 'Delivered our 100th project successfully, expanded to 50+ enterprise clients across 10+ industries' },
+    { year: '2024', event: 'Launched Generative AI practice, established Databricks Elite partnership, opened APAC operations' },
   ];
 
   return (
@@ -85,10 +86,10 @@ const CompanyPage = () => {
               <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                 <span className="section-label mb-5 inline-flex">Who We Are</span>
                 <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
-                  A Specialized Data & AI Consulting Firm
+                  A Specialized Data Analytics, AI & Cloud Advisory Firm
                 </h2>
                 <div className="space-y-4 text-[hsl(215_20%_42%)] leading-relaxed text-base mb-8">
-                  <p>DataCloud Solutions is a specialized consulting firm focused on helping enterprises unlock the value of their data through AI, analytics, and cloud technologies.</p>
+                  <p>DataCloud Solutions is a specialized advisory firm focused on helping enterprises unlock the value of their data through AI, analytics, and cloud technologies.</p>
                   <p>Our team of data engineers, data scientists, ML engineers, and cloud architects has delivered transformative projects for clients across healthcare, finance, retail, manufacturing, and more.</p>
                   <p>We combine deep technical expertise with business acumen to design and implement solutions that drive measurable ROI. From building real-time ML pipelines to migrating petabyte-scale data warehouses, we've tackled some of the most complex data challenges in the industry.</p>
                 </div>

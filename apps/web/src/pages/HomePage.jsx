@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Brain, Database, BarChart3, Cog, Cloud, TrendingUp,
@@ -22,10 +22,12 @@ const fadeUp = {
 };
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const services = [
     {
       icon: Brain,
       title: 'AI & Machine Learning',
+      id: 'ai-ml',
       description: 'Build intelligent systems with predictive analytics, NLP, computer vision, and generative AI solutions.',
       benefits: ['Automated decision-making', 'Pattern recognition', 'Predictive insights'],
       technologies: ['TensorFlow', 'PyTorch', 'Scikit-learn'],
@@ -33,6 +35,7 @@ const HomePage = () => {
     {
       icon: Database,
       title: 'Data Science',
+      id: 'data-science',
       description: 'Extract actionable insights through statistical modeling, forecasting, and advanced analytics.',
       benefits: ['Data-driven decisions', 'Customer insights', 'Risk assessment'],
       technologies: ['Python', 'R', 'SQL'],
@@ -40,6 +43,7 @@ const HomePage = () => {
     {
       icon: BarChart3,
       title: 'Data Analytics',
+      id: 'data-analytics',
       description: 'Transform raw data into visual dashboards, KPI tracking, and self-service analytics platforms.',
       benefits: ['Real-time reporting', 'Performance tracking', 'Business intelligence'],
       technologies: ['Power BI', 'Tableau', 'Looker'],
@@ -47,6 +51,7 @@ const HomePage = () => {
     {
       icon: Cog,
       title: 'Data Engineering',
+      id: 'data-engineering',
       description: 'Build scalable data pipelines, warehouses, and real-time streaming architectures.',
       benefits: ['Automated data flows', 'Scalable infrastructure', 'Data quality'],
       technologies: ['Spark', 'Kafka', 'Databricks'],
@@ -54,6 +59,7 @@ const HomePage = () => {
     {
       icon: Cloud,
       title: 'Cloud Solutions',
+      id: 'cloud-solutions',
       description: 'Migrate and modernize applications on AWS, Azure, and GCP with DevOps automation.',
       benefits: ['Cost optimization', 'Scalability', 'High availability'],
       technologies: ['AWS', 'Azure', 'GCP'],
@@ -61,6 +67,7 @@ const HomePage = () => {
     {
       icon: TrendingUp,
       title: 'Business Intelligence',
+      id: 'data-analytics',
       description: 'Create comprehensive BI strategies with enterprise reporting and analytics governance.',
       benefits: ['Strategic insights', 'Data governance', 'Executive dashboards'],
       technologies: ['Power BI', 'Tableau', 'Qlik'],
@@ -68,14 +75,14 @@ const HomePage = () => {
   ];
 
   const industries = [
-    { icon: Heart, name: 'Healthcare', color: '#e11d48' },
     { icon: Building2, name: 'Banking & Finance', color: '#0284c7' },
     { icon: ShoppingBag, name: 'Retail & E-commerce', color: '#7c3aed' },
-    { icon: Factory, name: 'Manufacturing', color: '#b45309' },
     { icon: Radio, name: 'Telecommunications', color: '#0891b2' },
-    { icon: Zap, name: 'Energy & Utilities', color: '#d97706' },
     { icon: Truck, name: 'Logistics & Supply Chain', color: '#16a34a' },
     { icon: Globe, name: 'Public Sector', color: '#4f46e5' },
+    { icon: Zap, name: 'Energy & Utilities', color: '#d97706' },
+    { icon: Factory, name: 'Manufacturing', color: '#b45309' },
+    { icon: Heart, name: 'Healthcare', color: '#e11d48' },
   ];
 
   const testimonials = [
@@ -112,7 +119,7 @@ const HomePage = () => {
     { icon: Shield, title: 'Enterprise-Grade Security', description: 'Every solution is designed with security, compliance, and data governance as first-class requirements.' },
   ];
 
-  const partners = ['AWS', 'Azure', 'GCP', 'Databricks', 'Snowflake', 'dbt', 'Cloudera', 'Confluent Kafka', 'Qlik'];
+  const partners = ['AWS', 'Azure', 'GCP', 'Databricks', 'dbt', 'Cloudera', 'Confluent Kafka', 'Qlik'];
 
   return (
     <>
@@ -196,7 +203,7 @@ const HomePage = () => {
                   {[
                     { label: 'SOC 2 Certified' },
                     { label: 'ISO 27001' },
-                    { label: 'AWS Partner', tech: 'AWS' },
+                    // { label: 'AWS Partner', tech: 'AWS' },
                   ].map((badge) => (
                     <div key={badge.label} className="flex items-center gap-1.5 text-xs text-white/50">
                       {badge.tech ? (
@@ -312,7 +319,7 @@ const HomePage = () => {
             >
               <span className="section-label mb-4 inline-flex">Our Expertise</span>
               <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
-                End-to-End Data & AI Solutions
+                End-to-End Data Analytics, AI & Cloud Solutions
               </h2>
               <p className="text-[hsl(215_20%_50%)] max-w-2xl mx-auto text-lg">
                 From strategy to implementation, we deliver solutions tailored to your business needs
@@ -325,7 +332,7 @@ const HomePage = () => {
                   key={index}
                   {...service}
                   index={index}
-                  onCTAClick={() => window.location.href = '/services'}
+                  onCTAClick={() => navigate(`/services#${service.id}`)}
                 />
               ))}
             </div>
@@ -346,7 +353,7 @@ const HomePage = () => {
                 <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
                   <span className="section-label mb-4 inline-flex">Why DataCloud</span>
                   <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
-                    What Sets Us Apart in Data & AI Consulting
+                    What Sets Us Apart in Data Analytics, AI & Cloud Advisory
                   </h2>
                   <p className="text-[hsl(215_20%_50%)] mb-10 text-base leading-relaxed">
                     We combine deep technical expertise with business acumen to deliver solutions that create measurable, lasting impact for our clients.

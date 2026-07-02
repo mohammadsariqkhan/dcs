@@ -74,12 +74,12 @@ const ServicesPage = () => {
   ];
 
   const serviceGroups = [
-    { label: 'AI & ML', title: 'Artificial Intelligence & Machine Learning', subtitle: 'Build intelligent systems that learn, adapt, and deliver measurable business value', services: aiMLServices, bg: false },
-    { label: 'Data Science', title: 'Data Science', subtitle: 'Extract actionable insights through statistical rigor and advanced analytics', services: dataScienceServices, bg: true },
-    { label: 'Analytics', title: 'Data Analytics', subtitle: 'Transform data into visual insights with interactive dashboards and reporting', services: analyticsServices, bg: false },
-    { label: 'Advanced Analytics', title: 'Advanced Analytics', subtitle: 'Go beyond descriptive analytics with predictive and prescriptive insights', services: advancedAnalyticsServices, bg: true },
-    { label: 'Engineering', title: 'Data Engineering', subtitle: 'Build scalable data infrastructure that powers analytics and ML at scale', services: dataEngineeringServices, bg: false },
-    { label: 'Cloud', title: 'Cloud Solutions', subtitle: 'Migrate, modernize, and optimize your infrastructure on leading cloud platforms', services: cloudServices, bg: true },
+    { id: 'ai-ml', label: 'AI & ML', title: 'Artificial Intelligence & Machine Learning', subtitle: 'Build intelligent systems that learn, adapt, and deliver measurable business value', services: aiMLServices, bg: false },
+    { id: 'data-science', label: 'Data Science', title: 'Data Science', subtitle: 'Extract actionable insights through statistical rigor and advanced analytics', services: dataScienceServices, bg: true },
+    { id: 'data-analytics', label: 'Analytics', title: 'Data Analytics', subtitle: 'Transform data into visual insights with interactive dashboards and reporting', services: analyticsServices, bg: false },
+    { id: 'advanced-analytics', label: 'Advanced Analytics', title: 'Advanced Analytics', subtitle: 'Go beyond descriptive analytics with predictive and prescriptive insights', services: advancedAnalyticsServices, bg: true },
+    { id: 'data-engineering', label: 'Engineering', title: 'Data Engineering', subtitle: 'Build scalable data infrastructure that powers analytics and ML at scale', services: dataEngineeringServices, bg: false },
+    { id: 'cloud-solutions', label: 'Cloud', title: 'Cloud Solutions', subtitle: 'Migrate, modernize, and optimize your infrastructure on leading cloud platforms', services: cloudServices, bg: true },
   ];
 
   return (
@@ -105,10 +105,10 @@ const ServicesPage = () => {
                 Our Services
               </span>
               <h1 className="text-4xl md:text-5xl font-800 text-white mb-5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
-                Comprehensive Data & AI Solutions
+                Comprehensive Data Analytics, AI & Cloud Solutions
               </h1>
               <p className="text-white/65 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-                End-to-end data and AI solutions designed to transform your business — from strategy and architecture to implementation and ongoing optimization.
+                End-to-end data analytics, AI & cloud solutions designed to transform your business — from strategy and architecture to implementation and ongoing optimization.
               </p>
               <Link to="/contact" className="btn-white">
                 Schedule Consultation <ArrowRight size={16} />
@@ -117,14 +117,14 @@ const ServicesPage = () => {
           </div>
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" style={{ display: 'block', width: '100%' }}>
-              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="white"/>
+              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="white" />
             </svg>
           </div>
         </section>
 
         {/* Service Groups */}
         {serviceGroups.map((group, gi) => (
-          <section key={gi} className={`py-20 ${group.bg ? 'bg-[hsl(214_32%_97%)]' : 'bg-white'}`}>
+          <section key={gi} id={group.id} className={`py-20 ${group.bg ? 'bg-[hsl(214_32%_97%)]' : 'bg-white'}`}>
             <div className="container-custom">
               <SectionHeader label={group.label} title={group.title} subtitle={group.subtitle} />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

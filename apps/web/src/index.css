@@ -487,4 +487,9 @@
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   }
+
+  /* ── Smooth Scroll Target Offset ── */
+  section[id] {
+    scroll-margin-top: 96px;
+  }
 }

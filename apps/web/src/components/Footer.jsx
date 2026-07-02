@@ -21,12 +21,12 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const services = [
-    { label: 'AI & Machine Learning', path: '/services' },
-    { label: 'Data Engineering', path: '/services' },
-    { label: 'Data Science', path: '/services' },
-    { label: 'Data Analytics', path: '/services' },
-    { label: 'Cloud Solutions', path: '/services' },
-    { label: 'Digital Transformation', path: '/services' },
+    { label: 'AI & Machine Learning', path: '/services#ai-ml' },
+    { label: 'Data Engineering', path: '/services#data-engineering' },
+    { label: 'Data Science', path: '/services#data-science' },
+    { label: 'Data Analytics', path: '/services#data-analytics' },
+    { label: 'Cloud Solutions', path: '/services#cloud-solutions' },
+    { label: 'Business Intelligence', path: '/services#business-intelligence' },
   ];
 
   const company = [

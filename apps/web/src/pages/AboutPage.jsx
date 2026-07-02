@@ -78,7 +78,7 @@ const AboutPage = () => {
                   Born from a Vision to Make Data Work
                 </h2>
                 <div className="space-y-4 text-[hsl(215_20%_42%)] leading-relaxed text-base">
-                  <p>Founded in 2023, DataCloud Solutions emerged from a simple observation: organizations were sitting on vast amounts of data but struggling to extract meaningful value from it.</p>
+                  <p>Founded in 2015, DataCloud Solutions emerged from a simple observation: organizations were sitting on vast amounts of data but struggling to extract meaningful value from it.</p>
                   <p>Our founding team of data engineers,data scientists, ML engineers, and cloud architects came together with a shared vision: to help businesses unlock the power of their data through cutting-edge AI, analytics, and cloud technologies.</p>
                   <p>Today, we've grown into a trusted partner for 10+ enterprise clients across healthcare, finance, retail, manufacturing, and more. Our team has delivered 100+ successful projects, from building real-time ML pipelines to migrating petabyte-scale data warehouses to the cloud.</p>
                 </div>
@@ -101,10 +101,10 @@ const AboutPage = () => {
                 <motion.div
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute -bottom-5 -left-5 glass rounded-2xl fp-4 shadow-elevated"
+                  className="absolute -bottom-5 -left-5 glass rounded-2xl fp-4 shadow-elevated px-3 py-2"
                 >
                   <p className="text-xs text-gray-500 mb-1">Founded</p>
-                  <p className="text-2xl font-800 text-[hsl(213_94%_38%)]" style={{ fontWeight: 800 }}>2023</p>
+                  <p className="text-2xl font-800 text-[hsl(213_94%_38%)]" style={{ fontWeight: 800 }}>2015</p>
                   {/* <p className="text-xs text-gray-500 mt-1">less then 1 year of excellence</p> */}
                 </motion.div>
               </motion.div>
