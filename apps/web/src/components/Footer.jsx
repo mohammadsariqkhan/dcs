@@ -42,7 +42,12 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[hsl(222_47%_9%)] text-white/70">
+    <footer className="relative bg-[hsl(222_47%_9%)] text-white/70 overflow-hidden">
+      {/* Subtle tech background illustration */}
+      <div 
+        className="absolute inset-0 bg-[url('/images/hero_data_flow.png')] bg-no-repeat bg-right-bottom bg-contain opacity-[0.03] pointer-events-none" 
+        style={{ mixBlendMode: 'screen' }}
+      />
 
       {/* CTA Banner */}
       <div className="border-b border-white/8">
@@ -75,7 +80,7 @@ const Footer = () => {
               <img
                 src="/logo.svg"
                 alt="DataCloud Solutions"
-                className="h-10 w-auto brightness-0 invert"
+                className="h-[52px] lg:h-[64px] w-auto brightness-0 invert"
               />
             </Link>
             <p className="text-sm leading-relaxed mb-6 text-white/55">

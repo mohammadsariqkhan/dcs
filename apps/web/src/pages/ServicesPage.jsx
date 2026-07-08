@@ -10,7 +10,7 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServiceCard from '@/components/ServiceCard';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -18,7 +18,7 @@ const fadeUp = {
 };
 
 const SectionHeader = ({ label, title, subtitle }) => (
-  <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-12">
+  <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mb-10">
     <span className="section-label mb-4 inline-flex">{label}</span>
     <h2 className="text-2xl md:text-3xl font-800 text-[hsl(222_47%_11%)] mb-3"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
@@ -29,48 +29,50 @@ const SectionHeader = ({ label, title, subtitle }) => (
 );
 
 const ServicesPage = () => {
+  const navigate = useNavigate();
   const aiMLServices = [
-    { icon: Sparkles, title: 'Predictive Analytics', description: 'Build ML models that forecast trends, customer behavior, and business outcomes with high accuracy.', benefits: ['Revenue forecasting', 'Demand prediction', 'Churn prevention'], technologies: ['Scikit-learn', 'XGBoost', 'Prophet'] },
-    { icon: Brain, title: 'Generative AI', description: 'Implement LLMs and generative models for content creation, code generation, and intelligent automation.', benefits: ['Content automation', 'Code assistance', 'Document generation'], technologies: ['GPT-4', 'Claude', 'LangChain'] },
-    { icon: MessageSquare, title: 'NLP Solutions', description: 'Extract insights from text with sentiment analysis, entity recognition, and document understanding.', benefits: ['Customer feedback analysis', 'Document processing', 'Chatbot intelligence'], technologies: ['spaCy', 'Transformers', 'BERT'] },
-    { icon: Eye, title: 'Computer Vision', description: 'Deploy image recognition, object detection, and visual quality inspection systems.', benefits: ['Quality control', 'Object detection', 'Image classification'], technologies: ['YOLO', 'ResNet', 'OpenCV'] },
-    { icon: Star, title: 'Recommendation Systems', description: 'Create personalized recommendation engines that drive engagement and revenue.', benefits: ['Product recommendations', 'Content personalization', 'User engagement'], technologies: ['Collaborative filtering', 'Matrix factorization', 'Deep learning'] },
-    { icon: Activity, title: 'MLOps', description: 'Operationalize ML models with automated training, deployment, and monitoring pipelines.', benefits: ['Model versioning', 'Automated retraining', 'Performance monitoring'], technologies: ['MLflow', 'Kubeflow', 'SageMaker'] },
+    { icon: Sparkles, title: 'Predictive Analytics', description: 'Build ML models that forecast trends, customer behavior, and business outcomes with high accuracy.', benefits: ['Revenue forecasting', 'Demand prediction', 'Churn prevention'], technologies: ['Scikit-learn', 'XGBoost', 'Prophet'], imageUrl: '/images/services/machine_learning.png' },
+    { icon: Brain, title: 'Generative AI', description: 'Implement LLMs and generative models for content creation, code generation, and intelligent automation.', benefits: ['Content automation', 'Code assistance', 'Document generation'], technologies: ['GPT-4', 'Claude', 'LangChain'], imageUrl: '/images/services/artificial_intelligence.png' },
+    { icon: MessageSquare, title: 'NLP Solutions', description: 'Extract insights from text with sentiment analysis, entity recognition, and document understanding.', benefits: ['Customer feedback analysis', 'Document processing', 'Chatbot intelligence'], technologies: ['spaCy', 'Transformers', 'BERT'], imageUrl: '/images/services/artificial_intelligence.png' },
+    { icon: Eye, title: 'Computer Vision', description: 'Deploy image recognition, object detection, and visual quality inspection systems.', benefits: ['Quality control', 'Object detection', 'Image classification'], technologies: ['YOLO', 'ResNet', 'OpenCV'], imageUrl: '/images/services/artificial_intelligence.png' },
+    { icon: Star, title: 'Recommendation Systems', description: 'Create personalized recommendation engines that drive engagement and revenue.', benefits: ['Product recommendations', 'Content personalization', 'User engagement'], technologies: ['Collaborative filtering', 'Matrix factorization', 'Deep learning'], imageUrl: '/images/services/machine_learning.png' },
+    { icon: Activity, title: 'MLOps', description: 'Operationalize ML models with automated training, deployment, and monitoring pipelines.', benefits: ['Model versioning', 'Automated retraining', 'Performance monitoring'], technologies: ['MLflow', 'Kubeflow', 'SageMaker'], imageUrl: '/images/services/machine_learning.png' },
   ];
 
   const dataScienceServices = [
-    { icon: LineChart, title: 'Statistical Modeling', description: 'Apply advanced statistical methods to understand relationships and test hypotheses in your data.', benefits: ['Hypothesis testing', 'Correlation analysis', 'Regression modeling'], technologies: ['R', 'Python', 'SAS'] },
-    { icon: TrendingUp, title: 'Forecasting', description: 'Build time series models for accurate demand, sales, and resource planning.', benefits: ['Demand forecasting', 'Inventory optimization', 'Resource planning'], technologies: ['ARIMA', 'Prophet', 'LSTM'] },
-    { icon: Target, title: 'Customer Analytics', description: 'Segment customers, predict lifetime value, and optimize marketing campaigns.', benefits: ['Customer segmentation', 'LTV prediction', 'Campaign optimization'], technologies: ['K-means', 'RFM analysis', 'Cohort analysis'] },
-    { icon: Database, title: 'Data Mining', description: 'Discover hidden patterns and insights in large datasets using advanced algorithms.', benefits: ['Pattern discovery', 'Anomaly detection', 'Association rules'], technologies: ['Apriori', 'FP-Growth', 'DBSCAN'] },
+    { icon: LineChart, title: 'Statistical Modeling', description: 'Apply advanced statistical methods to understand relationships and test hypotheses in your data.', benefits: ['Hypothesis testing', 'Correlation analysis', 'Regression modeling'], technologies: ['R', 'Python', 'SAS'], imageUrl: '/images/services/data_science.png' },
+    { icon: TrendingUp, title: 'Forecasting', description: 'Build time series models for accurate demand, sales, and resource planning.', benefits: ['Demand forecasting', 'Inventory optimization', 'Resource planning'], technologies: ['ARIMA', 'Prophet', 'LSTM'], imageUrl: '/images/services/data_science.png' },
+    { icon: Target, title: 'Customer Analytics', description: 'Segment customers, predict lifetime value, and optimize marketing campaigns.', benefits: ['Customer segmentation', 'LTV prediction', 'Campaign optimization'], technologies: ['K-means', 'RFM analysis', 'Cohort analysis'], imageUrl: '/images/services/data_analytics.png' },
+    { icon: Database, title: 'Data Mining', description: 'Discover hidden patterns and insights in large datasets using advanced algorithms.', benefits: ['Pattern discovery', 'Anomaly detection', 'Association rules'], technologies: ['Apriori', 'FP-Growth', 'DBSCAN'], imageUrl: '/images/services/data_science.png' },
   ];
 
   const analyticsServices = [
-    { icon: PieChart, title: 'Dashboard Development', description: 'Create interactive dashboards that provide real-time visibility into business metrics.', benefits: ['Real-time monitoring', 'Interactive visualizations', 'Mobile access'], technologies: ['Power BI', 'Tableau', 'Looker'] },
-    { icon: Gauge, title: 'KPI Tracking', description: 'Define, track, and visualize key performance indicators across your organization.', benefits: ['Performance monitoring', 'Goal tracking', 'Automated alerts'], technologies: ['Power BI', 'Tableau', 'Google Data Studio'] },
-    { icon: BarChart3, title: 'Self-Service Analytics', description: 'Empower business users to explore data and create reports without IT dependency.', benefits: ['User empowerment', 'Faster insights', 'Reduced IT burden'], technologies: ['Power BI', 'Tableau', 'Qlik Sense'] },
+    { icon: PieChart, title: 'Dashboard Development', description: 'Create interactive dashboards that provide real-time visibility into business metrics.', benefits: ['Real-time monitoring', 'Interactive visualizations', 'Mobile access'], technologies: ['Power BI', 'Tableau', 'Looker'], imageUrl: '/images/services/business_intelligence.png' },
+    { icon: Gauge, title: 'KPI Tracking', description: 'Define, track, and visualize key performance indicators across your organization.', benefits: ['Performance monitoring', 'Goal tracking', 'Automated alerts'], technologies: ['Power BI', 'Tableau', 'Google Data Studio'], imageUrl: '/images/services/business_intelligence.png' },
+    { icon: BarChart3, title: 'Self-Service Analytics', description: 'Empower business users to explore data and create reports without IT dependency.', benefits: ['User empowerment', 'Faster insights', 'Reduced IT burden'], technologies: ['Power BI', 'Tableau', 'Qlik Sense'], imageUrl: '/images/services/data_analytics.png' },
   ];
 
   const advancedAnalyticsServices = [
-    { icon: Zap, title: 'Prescriptive Analytics', description: 'Recommend optimal actions using optimization algorithms and decision science.', benefits: ['Decision optimization', 'Resource allocation', 'Risk mitigation'], technologies: ['Linear programming', 'Genetic algorithms', 'Simulation'] },
-    { icon: Shield, title: 'Risk Analytics', description: 'Identify, quantify, and mitigate business risks through advanced modeling.', benefits: ['Risk scoring', 'Fraud detection', 'Credit risk assessment'], technologies: ['Logistic regression', 'Random forests', 'Neural networks'] },
+    { icon: Zap, title: 'Prescriptive Analytics', description: 'Recommend optimal actions using optimization algorithms and decision science.', benefits: ['Decision optimization', 'Resource allocation', 'Risk mitigation'], technologies: ['Linear programming', 'Genetic algorithms', 'Simulation'], imageUrl: '/images/services/business_intelligence.png' },
+    { icon: Shield, title: 'Risk Analytics', description: 'Identify, quantify, and mitigate business risks through advanced modeling.', benefits: ['Risk scoring', 'Fraud detection', 'Credit risk assessment'], technologies: ['Logistic regression', 'Random forests', 'Neural networks'], imageUrl: '/images/services/business_intelligence.png' },
+    { icon: Star, title: 'Data & AI Consulting', description: 'Unlock the value of your enterprise data with specialized architectural advisory and design services.', benefits: ['Technology selection roadmap', 'ROI optimization', 'Data strategy audit'], technologies: ['Databricks', 'Snowflake', 'AWS', 'Azure'], imageUrl: '/images/consulting_meeting.png' }
   ];
 
   const dataEngineeringServices = [
-    { icon: Workflow, title: 'ETL/ELT Pipelines', description: 'Build robust data pipelines that extract, transform, and load data at scale.', benefits: ['Automated data flows', 'Data quality', 'Scalability'], technologies: ['Apache Airflow', 'dbt', 'Fivetran'] },
-    { icon: HardDrive, title: 'Data Warehousing', description: 'Design and implement modern data warehouses for analytics and reporting.', benefits: ['Centralized data', 'Fast queries', 'Historical analysis'], technologies: ['Snowflake', 'BigQuery', 'Redshift'] },
-    { icon: Server, title: 'Data Lakes & Lakehouses', description: 'Build scalable data lakes and lakehouses for structured and unstructured data.', benefits: ['Unified storage', 'Cost efficiency', 'Flexibility'], technologies: ['Delta Lake', 'Apache Iceberg', 'S3'] },
-    { icon: GitBranch, title: 'Apache Spark', description: 'Process large-scale data with distributed computing using Apache Spark.', benefits: ['Fast processing', 'Scalability', 'Real-time analytics'], technologies: ['PySpark', 'Spark SQL', 'Spark Streaming'] },
-    { icon: Cog, title: 'Databricks', description: 'Leverage Databricks for unified analytics, ML, and data engineering workflows.', benefits: ['Collaborative notebooks', 'MLOps integration', 'Auto-scaling'], technologies: ['Databricks', 'Delta Lake', 'MLflow'] },
-    { icon: Radio, title: 'Kafka Streaming', description: 'Build real-time data pipelines and streaming applications with Apache Kafka.', benefits: ['Real-time processing', 'Event-driven architecture', 'High throughput'], technologies: ['Kafka', 'Kafka Streams', 'Confluent'] },
+    { icon: Workflow, title: 'ETL/ELT Pipelines', description: 'Build robust data pipelines that extract, transform, and load data at scale.', benefits: ['Automated data flows', 'Data quality', 'Scalability'], technologies: ['Apache Airflow', 'dbt', 'Fivetran'], imageUrl: '/images/services/data_engineering.png' },
+    { icon: HardDrive, title: 'Data Warehousing', description: 'Design and implement modern data warehouses for analytics and reporting.', benefits: ['Centralized data', 'Fast queries', 'Historical analysis'], technologies: ['Snowflake', 'BigQuery', 'Redshift'], imageUrl: '/images/services/data_engineering.png' },
+    { icon: Server, title: 'Data Lakes & Lakehouses', description: 'Build scalable data lakes and lakehouses for structured and unstructured data.', benefits: ['Unified storage', 'Cost efficiency', 'Flexibility'], technologies: ['Delta Lake', 'Apache Iceberg', 'S3'], imageUrl: '/images/services/data_engineering.png' },
+    { icon: GitBranch, title: 'Apache Spark', description: 'Process large-scale data with distributed computing using Apache Spark.', benefits: ['Fast processing', 'Scalability', 'Real-time analytics'], technologies: ['PySpark', 'Spark SQL', 'Spark Streaming'], imageUrl: '/images/services/data_engineering.png' },
+    { icon: Cog, title: 'Databricks', description: 'Leverage Databricks for unified analytics, ML, and data engineering workflows.', benefits: ['Collaborative notebooks', 'MLOps integration', 'Auto-scaling'], technologies: ['Databricks', 'Delta Lake', 'MLflow'], imageUrl: '/images/services/data_engineering.png' },
+    { icon: Radio, title: 'Kafka Streaming', description: 'Build real-time data pipelines and streaming applications with Apache Kafka.', benefits: ['Real-time processing', 'Event-driven architecture', 'High throughput'], technologies: ['Kafka', 'Kafka Streams', 'Confluent'], imageUrl: '/images/services/data_engineering.png' },
   ];
 
   const cloudServices = [
-    { icon: Cloud, title: 'AWS Solutions', description: 'Design, deploy, and optimize applications on Amazon Web Services.', benefits: ['Global infrastructure', 'Cost optimization', 'Managed services'], technologies: ['EC2', 'S3', 'Lambda', 'RDS'] },
-    { icon: CloudCog, title: 'Microsoft Azure', description: 'Build enterprise applications on Azure with hybrid cloud capabilities.', benefits: ['Enterprise integration', 'Hybrid cloud', 'AI services'], technologies: ['Azure VMs', 'Azure SQL', 'Azure Functions'] },
-    { icon: Cloud, title: 'Google Cloud Platform', description: 'Leverage GCP for data analytics, ML, and containerized applications.', benefits: ['BigQuery analytics', 'Kubernetes', 'AI/ML tools'], technologies: ['Compute Engine', 'BigQuery', 'Cloud Run'] },
-    { icon: Settings, title: 'Cloud Migration', description: 'Migrate on-premise workloads to the cloud with minimal disruption.', benefits: ['Reduced costs', 'Improved scalability', 'Business continuity'], technologies: ['AWS Migration Hub', 'Azure Migrate', 'Terraform'] },
-    { icon: Zap, title: 'DevOps & CI/CD', description: 'Automate deployment pipelines and infrastructure with DevOps best practices.', benefits: ['Faster deployments', 'Automated testing', 'Infrastructure as code'], technologies: ['Jenkins', 'GitLab CI', 'Terraform', 'Ansible'] },
+    { icon: Cloud, title: 'AWS Solutions', description: 'Design, deploy, and optimize applications on Amazon Web Services.', benefits: ['Global infrastructure', 'Cost optimization', 'Managed services'], technologies: ['EC2', 'S3', 'Lambda', 'RDS'], imageUrl: '/images/services/cloud_solutions.png' },
+    { icon: CloudCog, title: 'Microsoft Azure', description: 'Build enterprise applications on Azure with hybrid cloud capabilities.', benefits: ['Enterprise integration', 'Hybrid cloud', 'AI services'], technologies: ['Azure VMs', 'Azure SQL', 'Azure Functions'], imageUrl: '/images/services/cloud_solutions.png' },
+    { icon: Cloud, title: 'Google Cloud Platform', description: 'Leverage GCP for data analytics, ML, and containerized applications.', benefits: ['BigQuery analytics', 'Kubernetes', 'AI/ML tools'], technologies: ['Compute Engine', 'BigQuery', 'Cloud Run'], imageUrl: '/images/services/cloud_solutions.png' },
+    { icon: Settings, title: 'Cloud Migration', description: 'Migrate on-premise workloads to the cloud with minimal disruption.', benefits: ['Reduced costs', 'Improved scalability', 'Business continuity'], technologies: ['AWS Migration Hub', 'Azure Migrate', 'Terraform'], imageUrl: '/images/services/cloud_solutions.png' },
+    { icon: Zap, title: 'DevOps & CI/CD', description: 'Automate deployment pipelines and infrastructure with DevOps best practices.', benefits: ['Faster deployments', 'Automated testing', 'Infrastructure as code'], technologies: ['Jenkins', 'GitLab CI', 'Terraform', 'Ansible'], imageUrl: '/images/services/cloud_solutions.png' },
   ];
 
   const serviceGroups = [
@@ -124,7 +126,7 @@ const ServicesPage = () => {
 
         {/* Service Groups */}
         {serviceGroups.map((group, gi) => (
-          <section key={gi} id={group.id} className={`py-20 ${group.bg ? 'bg-[hsl(214_32%_97%)]' : 'bg-white'}`}>
+          <section key={gi} id={group.id} className={`py-16 ${group.bg ? 'bg-[hsl(214_32%_97%)]' : 'bg-white'}`}>
             <div className="container-custom">
               <SectionHeader label={group.label} title={group.title} subtitle={group.subtitle} />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -133,7 +135,8 @@ const ServicesPage = () => {
                     key={index}
                     {...service}
                     index={index}
-                    onCTAClick={() => window.location.href = '/contact'}
+                    showIllustration={true}
+                    onCTAClick={() => navigate('/contact')}
                   />
                 ))}
               </div>

@@ -25,16 +25,17 @@ const useCounter = (target, duration = 1800, start = false) => {
   return count;
 };
 
-const StatCard = ({ number, label, index, icon: Icon }) => {
+const StatCard = ({ number, label, index, icon: Icon, variant = 'default' }) => {
   const [inView, setInView] = useState(false);
   const ref = useRef(null);
   const suffix = number.replace(/[0-9.]/g, '');
   const animated = useCounter(number, 1600, inView);
+  const isLight = variant === 'light';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -43,16 +44,21 @@ const StatCard = ({ number, label, index, icon: Icon }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       className="text-center group"
     >
-      <div className="stat-number text-[hsl(213_94%_38%)] mb-1">
+      {Icon && (
+        <div className="mb-3 flex justify-center">
+          <Icon size={24} className={isLight ? 'text-white/80' : 'text-[hsl(213_94%_38%)]'} />
+        </div>
+      )}
+      <div className={`text-4xl md:text-5xl font-800 mb-2 ${isLight ? 'text-white' : 'text-[hsl(213_94%_38%)]'}`} style={{ fontWeight: 800, letterSpacing: '-0.04em' }}>
         {inView ? animated : 0}{suffix}
       </div>
-      <p className="text-sm font-500 text-[hsl(215_20%_50%)] tracking-wide" style={{ fontWeight: 500 }}>
+      <p className={`text-sm font-500 tracking-wide ${isLight ? 'text-white/70' : 'text-[hsl(215_20%_50%)]'}`} style={{ fontWeight: 500 }}>
         {label}
       </p>
     </motion.div>

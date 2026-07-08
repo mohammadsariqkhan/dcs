@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { CartProvider } from '@/hooks/useCart';
 import { AuthProvider } from '@/contexts/AuthContext';
 import ScrollToTop from '@/components/ScrollToTop';
+import BackToTop from '@/components/BackToTop';
 import HomePage from '@/pages/HomePage';
 import ServicesPage from '@/pages/ServicesPage';
 import AboutPage from '@/pages/AboutPage';
@@ -17,6 +18,7 @@ function App() {
       <CartProvider>
         <Router>
           <ScrollToTop />
+          <BackToTop />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />

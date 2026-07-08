@@ -6,7 +6,7 @@ import {
   Brain, Database, BarChart3, Cog, Cloud, TrendingUp,
   Heart, Building2, ShoppingBag, Factory, Radio, Zap, Truck,
   ArrowRight, CheckCircle2, Users, Award, Lightbulb, Star,
-  ChevronRight, Shield, Globe, Layers
+  ChevronRight, Shield, Globe, Layers, LineChart, GitBranch, Home, GraduationCap
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -15,6 +15,7 @@ import ServiceCard from '@/components/ServiceCard';
 import TechBadge from '@/components/TechBadge';
 import TechIcon from '@/components/TechIcon';
 import LogoMarquee from '@/components/LogoMarquee';
+import Illustration from '@/components/Illustration';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -23,66 +24,168 @@ const fadeUp = {
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [activeHeroTab, setActiveHeroTab] = React.useState(0);
+
+  const heroTabs = [
+    {
+      label: 'AI & Cloud',
+      image: '/images/hero_ai_cloud.png',
+      metricTitle: 'Infrastructure Efficiency',
+      metricValue: '+85%',
+      metricColor: 'text-blue-500'
+    },
+    {
+      label: 'Data Flow',
+      image: '/images/hero_data_flow.png',
+      metricTitle: 'Pipeline Throughput',
+      metricValue: '10x Faster',
+      metricColor: 'text-cyan-500'
+    },
+    {
+      label: 'AI Brain',
+      image: '/images/hero_ai_brain.png',
+      metricTitle: 'Model Accuracy',
+      metricValue: '99.4%',
+      metricColor: 'text-purple-500'
+    },
+    {
+      label: 'Workspace',
+      image: '/images/hero_workspace.png',
+      metricTitle: 'Operational Speed',
+      metricValue: '-40% Time',
+      metricColor: 'text-emerald-500'
+    }
+  ];
+
+  const processSteps = [
+    {
+      num: '01',
+      title: 'Data Collection',
+      icon: Database,
+      description: 'Ingesting raw telemetry, logs, transaction systems, and APIs into secure storage.',
+      color: '#0369a1'
+    },
+    {
+      num: '02',
+      title: 'Data Processing',
+      icon: Cog,
+      description: 'Validating, cleaning, de-duplicating, and formatting raw data streams.',
+      color: '#7c3aed'
+    },
+    {
+      num: '03',
+      title: 'Data Engineering',
+      icon: GitBranch,
+      description: 'Building secure ETL/ELT pipelines, data warehouses, and scalable lakehouse storage.',
+      color: '#059669'
+    },
+    {
+      num: '04',
+      title: 'AI & ML Modeling',
+      icon: Brain,
+      description: 'Training predictive classifiers, NLP models, and fine-tuning enterprise LLMs.',
+      color: '#d97706'
+    },
+    {
+      num: '05',
+      title: 'Data Visualization',
+      icon: BarChart3,
+      description: 'Designing executive KPI dashboards and interactive self-service BI systems.',
+      color: '#e11d48'
+    },
+    {
+      num: '06',
+      title: 'Deployment & MLOps',
+      icon: Zap,
+      description: 'Automating model deployment in secure, containerized cloud environments.',
+      color: '#2563eb'
+    },
+    {
+      num: '07',
+      title: 'Continuous Monitoring',
+      icon: Globe,
+      description: 'Monitoring data pipelines, model drift, costs, and optimizing platform performance.',
+      color: '#0d9488'
+    }
+  ];
+
   const services = [
     {
       icon: Brain,
-      title: 'AI & Machine Learning',
+      title: 'Artificial Intelligence',
       id: 'ai-ml',
-      description: 'Build intelligent systems with predictive analytics, NLP, computer vision, and generative AI solutions.',
-      benefits: ['Automated decision-making', 'Pattern recognition', 'Predictive insights'],
-      technologies: ['TensorFlow', 'PyTorch', 'Scikit-learn'],
+      description: 'Deploy generative AI, custom LLMs, computer vision, and NLP systems to automate operations.',
+      benefits: ['Generative AI workflows', 'Computer vision models', 'Natural Language Processing'],
+      technologies: ['GPT-4', 'Claude', 'LangChain'],
+      imageUrl: '/images/services/artificial_intelligence.png'
+    },
+    {
+      icon: Layers,
+      title: 'Machine Learning',
+      id: 'ai-ml',
+      description: 'Build and deploy predictive models, custom training algorithms, and scalable recommendation engines.',
+      benefits: ['Predictive analytics', 'Pattern recognition', 'Custom recommendations'],
+      technologies: ['Scikit-learn', 'PyTorch', 'TensorFlow'],
+      imageUrl: '/images/services/machine_learning.png'
     },
     {
       icon: Database,
-      title: 'Data Science',
-      id: 'data-science',
-      description: 'Extract actionable insights through statistical modeling, forecasting, and advanced analytics.',
-      benefits: ['Data-driven decisions', 'Customer insights', 'Risk assessment'],
-      technologies: ['Python', 'R', 'SQL'],
+      title: 'Data Engineering',
+      id: 'data-engineering',
+      description: 'Architect scalable databases, design robust ETL/ELT pipelines, and build real-time streaming.',
+      benefits: ['Automated data flows', 'Scalable infrastructure', 'Data quality checks'],
+      technologies: ['Spark', 'Kafka', 'Databricks'],
+      imageUrl: '/images/services/data_engineering.png'
+    },
+    {
+      icon: Cloud,
+      title: 'Cloud Engineering',
+      id: 'cloud-solutions',
+      description: 'Design and manage secure, auto-scaling cloud infrastructure on AWS, Azure, and Google Cloud.',
+      benefits: ['Cost optimization', 'DevOps automation', 'High availability'],
+      technologies: ['AWS', 'Azure', 'GCP'],
+      imageUrl: '/images/services/cloud_solutions.png'
     },
     {
       icon: BarChart3,
       title: 'Data Analytics',
       id: 'data-analytics',
-      description: 'Transform raw data into visual dashboards, KPI tracking, and self-service analytics platforms.',
-      benefits: ['Real-time reporting', 'Performance tracking', 'Business intelligence'],
+      description: 'Transform raw data into real-time interactive dashboards, KPI trackers, and unified reporting.',
+      benefits: ['Real-time dashboards', 'Performance tracking', 'Self-service analytics'],
       technologies: ['Power BI', 'Tableau', 'Looker'],
-    },
-    {
-      icon: Cog,
-      title: 'Data Engineering',
-      id: 'data-engineering',
-      description: 'Build scalable data pipelines, warehouses, and real-time streaming architectures.',
-      benefits: ['Automated data flows', 'Scalable infrastructure', 'Data quality'],
-      technologies: ['Spark', 'Kafka', 'Databricks'],
-    },
-    {
-      icon: Cloud,
-      title: 'Cloud Solutions',
-      id: 'cloud-solutions',
-      description: 'Migrate and modernize applications on AWS, Azure, and GCP with DevOps automation.',
-      benefits: ['Cost optimization', 'Scalability', 'High availability'],
-      technologies: ['AWS', 'Azure', 'GCP'],
+      imageUrl: '/images/services/data_analytics.png'
     },
     {
       icon: TrendingUp,
       title: 'Business Intelligence',
       id: 'data-analytics',
-      description: 'Create comprehensive BI strategies with enterprise reporting and analytics governance.',
-      benefits: ['Strategic insights', 'Data governance', 'Executive dashboards'],
+      description: 'Create comprehensive BI strategies, enterprise data cataloging, and unified executive reporting.',
+      benefits: ['Enterprise reporting', 'Data cataloging', 'Executive dashboards'],
       technologies: ['Power BI', 'Tableau', 'Qlik'],
+      imageUrl: '/images/services/business_intelligence.png'
+    },
+    {
+      icon: Shield,
+      title: 'Data Governance',
+      id: 'advanced-analytics',
+      description: 'Establish data compliance, security, privacy controls, cataloging, and metadata management.',
+      benefits: ['GDPR/CCPA compliance', 'Access controls', 'Data quality standards'],
+      technologies: ['Collibra', 'Alation', 'Apache Atlas'],
+      imageUrl: '/images/services/data_science.png'
     },
   ];
 
   const industries = [
     { icon: Building2, name: 'Banking & Finance', color: '#0284c7' },
-    { icon: ShoppingBag, name: 'Retail & E-commerce', color: '#7c3aed' },
-    { icon: Radio, name: 'Telecommunications', color: '#0891b2' },
-    { icon: Truck, name: 'Logistics & Supply Chain', color: '#16a34a' },
-    { icon: Globe, name: 'Public Sector', color: '#4f46e5' },
-    { icon: Zap, name: 'Energy & Utilities', color: '#d97706' },
-    { icon: Factory, name: 'Manufacturing', color: '#b45309' },
     { icon: Heart, name: 'Healthcare', color: '#e11d48' },
+    { icon: ShoppingBag, name: 'Retail & E-commerce', color: '#7c3aed' },
+    { icon: Factory, name: 'Manufacturing', color: '#ea580c' },
+    { icon: Truck, name: 'Logistics & Supply Chain', color: '#16a34a' },
+    { icon: Radio, name: 'Telecommunications', color: '#0891b2' },
+    { icon: Zap, name: 'Energy & Utilities', color: '#d97706' },
+    { icon: Home, name: 'Real Estate', color: '#db2777' },
+    { icon: GraduationCap, name: 'Education', color: '#4f46e5' },
+    { icon: Globe, name: 'Government & Public Sector', color: '#2563eb' },
   ];
 
   const testimonials = [
@@ -93,6 +196,7 @@ const HomePage = () => {
       company: 'TechFlow Industries',
       rating: 5,
       avatar: 'MC',
+      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=face'
     },
     {
       quote: 'The team delivered a real-time analytics platform that processes 2.4M transactions daily. Their expertise in Kafka and Spark was exceptional.',
@@ -101,6 +205,7 @@ const HomePage = () => {
       company: 'FinanceHub',
       rating: 5,
       avatar: 'RP',
+      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face'
     },
     {
       quote: 'Our cloud migration to AWS was seamless. DataCloud reduced our infrastructure costs by 47% while improving performance and reliability.',
@@ -109,6 +214,7 @@ const HomePage = () => {
       company: 'GlobalRetail Corp',
       rating: 5,
       avatar: 'LT',
+      avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=face'
     },
   ];
 
@@ -151,7 +257,7 @@ const HomePage = () => {
                 >
                   <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/25 text-blue-300 text-xs font-600 tracking-wider uppercase" style={{ fontWeight: 600 }}>
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                    Trusted by 10+ enterprises
+                    Niche. Focused. All Things Data.
                   </span>
                 </motion.div>
 
@@ -217,51 +323,75 @@ const HomePage = () => {
                 </motion.div>
               </div>
 
-              {/* Right — floating card visual */}
+              {/* Right — interactive showcase visual */}
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="hidden lg:block relative"
               >
-                <div className="relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=700&q=80&auto=format&fit=crop"
-                    alt="Data professionals collaborating"
-                    className="rounded-2xl shadow-[0_32px_80px_rgba(0,0,0,0.4)] w-full object-cover"
-                    style={{ height: '460px' }}
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-[hsl(222_47%_8%)/60%] via-transparent to-transparent" />
+                <div className="relative group/hero">
+                  {/* Floating tab bar */}
+                  <div className="absolute top-4 left-4 right-4 bg-slate-900/65 backdrop-blur-md rounded-xl p-1 flex gap-1 border border-white/10 z-20">
+                    {heroTabs.map((tab, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveHeroTab(idx)}
+                        className={`flex-1 py-2 rounded-lg text-[10px] font-700 tracking-wider uppercase transition-all duration-200 ${
+                          activeHeroTab === idx
+                            ? 'bg-blue-600 text-white shadow-soft'
+                            : 'text-white/70 hover:text-white hover:bg-white/5'
+                        }`}
+                        style={{ fontWeight: 700 }}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-[0_32px_80px_rgba(0,0,0,0.5)]" style={{ height: '460px' }}>
+                    <motion.img
+                      key={activeHeroTab}
+                      src={heroTabs[activeHeroTab].image}
+                      alt="Data and AI Cloud platform visualization"
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      className="w-full h-full object-cover transition-all duration-300 group-hover/hero:scale-[1.02]"
+                    />
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[hsl(222_47%_8%)/40%] via-transparent to-transparent pointer-events-none" />
+                  </div>
 
                   {/* Floating metric cards */}
                   <motion.div
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute -left-6 top-8 glass rounded-xl px-4 py-3 shadow-elevated"
+                    key={`metric-${activeHeroTab}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute -left-6 top-20 glass rounded-xl px-4 py-3 shadow-elevated z-10"
                   >
-                    <div className="text-xs text-gray-500 mb-0.5">Accuracy Improvement</div>
-                    <div className="text-2xl font-800 text-[hsl(213_94%_38%)]" style={{ fontWeight: 800 }}>+34%</div>
+                    <div className="text-[10px] text-gray-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>{heroTabs[activeHeroTab].metricTitle}</div>
+                    <div className="text-xl font-800 text-[hsl(213_94%_38%)]" style={{ fontWeight: 800 }}>{heroTabs[activeHeroTab].metricValue}</div>
                   </motion.div>
 
                   <motion.div
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                    className="absolute -right-6 bottom-16 glass rounded-xl px-4 py-3 shadow-elevated"
+                    className="absolute -right-6 bottom-16 glass rounded-xl px-4 py-3 shadow-elevated z-10"
                   >
-                    <div className="text-xs text-gray-500 mb-0.5">Cost Reduction</div>
-                    <div className="text-2xl font-800 text-emerald-600" style={{ fontWeight: 800 }}>-47%</div>
+                    <div className="text-[10px] text-gray-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Cost Reduction</div>
+                    <div className="text-xl font-800 text-emerald-600" style={{ fontWeight: 800 }}>-47%</div>
                   </motion.div>
 
                   <motion.div
                     animate={{ y: [0, -6, 0] }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                    className="absolute left-1/2 -translate-x-1/2 -bottom-5 glass rounded-xl px-4 py-3 shadow-elevated"
+                    className="absolute left-1/2 -translate-x-1/2 -bottom-5 glass rounded-xl px-4 py-3 shadow-elevated z-10"
                   >
-                    <div className="text-xs text-gray-500 mb-0.5">Client Satisfaction</div>
+                    <div className="text-[10px] text-gray-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Client Satisfaction</div>
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => <Star key={i} size={13} className="text-amber-400 fill-amber-400" />)}
-                      <span className="text-sm font-700 text-gray-700 ml-1" style={{ fontWeight: 700 }}>99%</span>
+                      <span className="text-xs font-700 text-gray-700 ml-1" style={{ fontWeight: 700 }}>99%</span>
                     </div>
                   </motion.div>
                 </div>
@@ -298,12 +428,13 @@ const HomePage = () => {
                   { number: '10+', label: 'Industries Served' },
                   { number: '99%', label: 'Client Satisfaction' },
                 ].map((stat, i) => (
-                  <div key={i} className="text-center">
-                    <div className="text-4xl md:text-5xl font-800 text-white mb-2" style={{ fontWeight: 800, letterSpacing: '-0.04em' }}>
-                      {stat.number}
-                    </div>
-                    <p className="text-sm text-white/70 font-500" style={{ fontWeight: 500 }}>{stat.label}</p>
-                  </div>
+                  <StatCard
+                    key={i}
+                    number={stat.number}
+                    label={stat.label}
+                    index={i}
+                    variant="light"
+                  />
                 ))}
               </div>
             </div>
@@ -321,8 +452,8 @@ const HomePage = () => {
               <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
                 End-to-End Data Analytics, AI & Cloud Solutions
               </h2>
-              <p className="text-[hsl(215_20%_50%)] max-w-2xl mx-auto text-lg">
-                From strategy to implementation, we deliver solutions tailored to your business needs
+              <p className="text-[hsl(215_20%_50%)] max-w-2xl mx-auto text-lg font-600">
+                Niche. Focused. All Things Data.
               </p>
             </motion.div>
 
@@ -390,13 +521,75 @@ const HomePage = () => {
                 className="relative"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=700&q=80&auto=format&fit=crop"
-                  alt="Data analytics dashboard"
-                  className="rounded-2xl shadow-elevated w-full object-cover"
+                  src="/images/why_us_dashboard.png"
+                  alt="Modern data analytics dashboard preview"
+                  className="rounded-2xl border border-slate-100 shadow-elevated w-full object-cover"
                   style={{ height: '500px' }}
                 />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-[hsl(213_94%_38%/0.1)]" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-[hsl(213_94%_38%/0.04)]" />
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── OUR WORKFLOW ── */}
+        <section className="py-24 bg-white relative overflow-hidden border-t border-gray-50">
+          <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+          
+          <div className="container-custom relative z-10">
+            <motion.div
+              variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <span className="section-label mb-4 inline-flex">Our Process</span>
+              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+                The Enterprise Data Lifecycle
+              </h2>
+              <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">
+                How we construct secure, scalable, and value-driven data platforms step by step
+              </p>
+            </motion.div>
+
+            {/* Horizontal Timeline Flow on Desktop, Grid on Mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-6 relative">
+              {/* Connector line for large screens */}
+              <div className="hidden lg:block absolute top-[44px] left-[5%] right-[5%] h-0.5 bg-gray-100 -z-10" />
+
+              {processSteps.map((step, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="flex flex-col items-center text-center group"
+                >
+                  {/* Step bubble */}
+                  <div
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 border transition-all duration-300 relative group-hover:scale-110 shadow-sm"
+                    style={{
+                      background: 'white',
+                      borderColor: 'hsl(214_32%_91%)',
+                    }}
+                  >
+                    <step.icon size={22} style={{ color: step.color }} />
+                    <span 
+                      className="absolute -top-2 -right-2 text-[10px] font-800 px-2 py-0.5 rounded-full text-white"
+                      style={{ background: step.color }}
+                    >
+                      {step.num}
+                    </span>
+                  </div>
+
+                  <h3 className="text-sm font-800 text-[hsl(222_47%_11%)] mb-2" style={{ fontWeight: 800 }}>
+                    {step.title}
+                  </h3>
+                  <p className="text-xs text-[hsl(215_20%_50%)] leading-relaxed max-w-[150px]">
+                    {step.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -414,21 +607,29 @@ const HomePage = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               {industries.map((industry, i) => (
                 <motion.div
                   key={i}
                   custom={i}
                   variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-                  className="card-premium p-5 flex items-center gap-3 group cursor-default"
+                  className="card-premium p-5 flex flex-col justify-between gap-4 group cursor-default h-full"
                 >
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
-                    style={{ background: `${industry.color}14`, border: `1px solid ${industry.color}28` }}>
-                    <industry.icon size={18} style={{ color: industry.color }} />
+                  {/* Illustration */}
+                  <div className="w-full h-24 flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50/20 rounded-lg border border-slate-100/50 overflow-hidden relative">
+                    <Illustration title={industry.name} className="w-full h-full max-h-[80px]" color={industry.color} />
                   </div>
-                  <span className="text-sm font-600 text-[hsl(222_47%_18%)]" style={{ fontWeight: 600 }}>
-                    {industry.name}
-                  </span>
+
+                  {/* Icon + Title */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-105"
+                      style={{ background: `${industry.color}14`, border: `1px solid ${industry.color}28` }}>
+                      <industry.icon size={15} style={{ color: industry.color }} />
+                    </div>
+                    <span className="text-xs sm:text-sm font-700 text-[hsl(222_47%_18%)] leading-snug" style={{ fontWeight: 700 }}>
+                      {industry.name}
+                    </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -436,7 +637,7 @@ const HomePage = () => {
         </section>
 
         {/* ── TESTIMONIALS ── */}
-        {/* <section className="py-24">
+        <section className="py-24 border-t border-gray-50">
           <div className="container-custom">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
               <span className="section-label mb-4 inline-flex">Client Stories</span>
@@ -454,19 +655,23 @@ const HomePage = () => {
                   key={i}
                   custom={i}
                   variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-                  className="card-premium p-7 flex flex-col"
+                  className="card-premium p-7 flex flex-col justify-between"
                 >
-                  <div className="flex gap-1 mb-5">
-                    {[...Array(t.rating)].map((_, s) => (
-                      <Star key={s} size={15} className="text-amber-400 fill-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-[hsl(215_20%_40%)] leading-relaxed mb-6 flex-1">"{t.quote}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-white text-xs font-700 flex-shrink-0"
-                      style={{ fontWeight: 700 }}>
-                      {t.avatar}
+                  <div>
+                    <div className="flex gap-1 mb-5">
+                      {[...Array(t.rating)].map((_, s) => (
+                        <Star key={s} size={15} className="text-amber-400 fill-amber-400" />
+                      ))}
                     </div>
+                    <p className="text-sm text-[hsl(215_20%_40%)] leading-relaxed mb-6 italic">"{t.quote}"</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                    <img 
+                      src={t.avatarUrl} 
+                      alt={t.name}
+                      loading="lazy"
+                      className="w-10 h-10 rounded-full object-cover border border-slate-100 shadow-sm flex-shrink-0"
+                    />
                     <div>
                       <p className="text-sm font-700 text-[hsl(222_47%_11%)]" style={{ fontWeight: 700 }}>{t.name}</p>
                       <p className="text-xs text-[hsl(215_20%_55%)]">{t.title}, {t.company}</p>
@@ -476,7 +681,7 @@ const HomePage = () => {
               ))}
             </div>
           </div>
-        </section> */}
+        </section>
 
         {/* ── CTA ── */}
         <section className="py-24">

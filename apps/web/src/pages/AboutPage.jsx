@@ -13,6 +13,28 @@ const fadeUp = {
 };
 
 const AboutPage = () => {
+  const [activeStoryTab, setActiveStoryTab] = React.useState(0);
+  const storyVisuals = [
+    {
+      title: 'Team Collaboration',
+      tabLabel: 'Collaboration',
+      image: '/images/about_team.png',
+      caption: 'A world-class team of data engineers and scientists collaborating to deliver premium AI solutions.'
+    },
+    {
+      title: 'Cloud Platforms & Analytics',
+      tabLabel: 'Engineering',
+      image: '/images/about_dashboard.png',
+      caption: 'Building real-time data streaming and secure analytics dashboard environments on major clouds.'
+    },
+    {
+      title: 'Digital Transformation',
+      tabLabel: 'Transformation',
+      image: '/images/about_transformation.png',
+      caption: 'Helping enterprises modernize their data architecture and capture business value from day one.'
+    }
+  ];
+
   const values = [
     { icon: Target, title: 'Client-First Approach', description: 'Your success drives everything we do. We partner closely with clients to understand their unique challenges and deliver solutions that create measurable impact.', color: '#0369a1' },
     { icon: Lightbulb, title: 'Innovation Mindset', description: 'We stay at the forefront of data science, AI, and cloud technologies, continuously exploring new methods to solve complex business problems.', color: '#7c3aed' },
@@ -89,24 +111,53 @@ const AboutPage = () => {
                 </div>
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80&auto=format&fit=crop"
-                  alt="DataCloud Solutions team collaborating"
-                  className="rounded-2xl shadow-elevated w-full object-cover"
-                  style={{ height: '480px' }}
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-[hsl(213_94%_38%/0.08)]" />
-                {/* Floating badge */}
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute -bottom-5 -left-5 glass rounded-2xl fp-4 shadow-elevated px-3 py-2"
-                >
-                  <p className="text-xs text-gray-500 mb-1">Founded</p>
-                  <p className="text-2xl font-800 text-[hsl(213_94%_38%)]" style={{ fontWeight: 800 }}>2015</p>
-                  {/* <p className="text-xs text-gray-500 mt-1">less then 1 year of excellence</p> */}
-                </motion.div>
+              <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="flex flex-col gap-6 relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-elevated border border-slate-100 bg-slate-900 group" style={{ height: '440px' }}>
+                  <motion.img
+                    key={activeStoryTab}
+                    src={storyVisuals[activeStoryTab].image}
+                    alt={storyVisuals[activeStoryTab].title}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
+                  
+                  {/* Image overlay caption */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
+                    <p className="text-xs font-600 text-blue-400 uppercase tracking-widest mb-1.5" style={{ fontWeight: 600 }}>{storyVisuals[activeStoryTab].title}</p>
+                    <p className="text-sm text-white/80 leading-relaxed font-500" style={{ fontWeight: 500 }}>{storyVisuals[activeStoryTab].caption}</p>
+                  </div>
+
+                  {/* Floating badge */}
+                  <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute top-4 right-4 glass rounded-xl shadow-elevated px-3 py-1.5 border border-white/10"
+                  >
+                    <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Founded</p>
+                    <p className="text-lg font-800 text-[hsl(213_94%_38%)] leading-none" style={{ fontWeight: 800 }}>2015</p>
+                  </motion.div>
+                </div>
+
+                {/* Switcher buttons */}
+                <div className="flex gap-2 flex-wrap">
+                  {storyVisuals.map((visual, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveStoryTab(idx)}
+                      className={`px-4 py-2 rounded-xl text-xs font-700 border transition-all duration-200 ${
+                        activeStoryTab === idx
+                          ? 'bg-[hsl(213_94%_38%)] border-[hsl(213_94%_38%)] text-white shadow-soft'
+                          : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300 hover:bg-gray-50'
+                      }`}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {visual.tabLabel}
+                    </button>
+                  ))}
+                </div>
               </motion.div>
             </div>
           </div>

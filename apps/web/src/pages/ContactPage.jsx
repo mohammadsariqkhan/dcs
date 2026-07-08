@@ -260,11 +260,11 @@ const ContactPage = () => {
                 </div>
 
                 {/* Image */}
-                <div className="rounded-2xl overflow-hidden shadow-elevated">
+                <div className="rounded-2xl overflow-hidden border border-slate-100 shadow-elevated group">
                   <img
-                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80&auto=format&fit=crop"
-                    alt="Professional business meeting"
-                    className="w-full object-cover"
+                    src="/images/hero_workspace.png"
+                    alt="Modern AI-inspired office workspace"
+                    className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     style={{ height: '200px' }}
                   />
                 </div>
