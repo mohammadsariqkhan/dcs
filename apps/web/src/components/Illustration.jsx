@@ -10,6 +10,65 @@ const Illustration = ({ title, className = '', color }) => {
   const strokeWidth = 1.5;
 
   // Render SVG based on card title mapping
+  if (normTitle.includes('agentic ai') || normTitle.includes('agent') || normTitle.includes('autonomous') || normTitle.includes('orchestration')) {
+    // Agentic AI -> Orchestrator, Agents, Tool Calling, Vector DB
+    return (
+      <svg viewBox="0 0 200 120" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="agent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={primaryColor} />
+            <stop offset="100%" stopColor={secondaryColor} />
+          </linearGradient>
+          <radialGradient id="agent-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor={secondaryColor} stopOpacity="0.25" />
+            <stop offset="100%" stopColor={secondaryColor} stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Glow background */}
+        <circle cx="100" cy="60" r="40" fill="url(#agent-glow)" />
+
+        {/* Outer loop network */}
+        <circle cx="100" cy="60" r="45" stroke={lightColor} strokeWidth="1" strokeDasharray="4 4" />
+
+        {/* Orchestrator Center Node */}
+        <circle cx="100" cy="60" r="14" fill="url(#agent-grad)" stroke="#fff" strokeWidth="2" />
+        {/* Core brain icon / lines inside center node */}
+        <path d="M96 60 H104 M100 56 V64" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="100" cy="60" r="4" fill="none" stroke="#fff" strokeWidth="1.5" />
+
+        {/* Multi-Agent Nodes (Surrounding Nodes) */}
+        {/* Agent 1: LLM Node */}
+        <g transform="translate(100, 20)">
+          <line x1="0" y1="0" x2="0" y2="26" stroke={primaryColor} strokeWidth={strokeWidth} />
+          <circle cx="0" cy="0" r="8" fill="#fff" stroke={primaryColor} strokeWidth="2" />
+          <path d="M-3 -2 H3 M-3 1 H3" stroke={primaryColor} strokeWidth="1.5" />
+        </g>
+
+        {/* Agent 2: Tool Node */}
+        <g transform="translate(60, 80)">
+          <line x1="0" y1="0" x2="40" y2="-20" stroke={primaryColor} strokeWidth={strokeWidth} />
+          <circle cx="0" cy="0" r="8" fill="#fff" stroke={primaryColor} strokeWidth="2" />
+          <circle cx="0" cy="0" r="3" fill={secondaryColor} />
+        </g>
+
+        {/* Agent 3: Vector DB Node */}
+        <g transform="translate(140, 80)">
+          <line x1="0" y1="0" x2="-40" y2="-20" stroke={primaryColor} strokeWidth={strokeWidth} />
+          <circle cx="0" cy="0" r="8" fill="#fff" stroke={primaryColor} strokeWidth="2" />
+          <path d="M-3 -3 H3 M-3 0 H3 M-3 3 H3" stroke={secondaryColor} strokeWidth="1.5" />
+        </g>
+
+        {/* Autonomous Feedback Loop Arrows */}
+        <path d="M112 50 C125 45, 130 55, 122 62" stroke={secondaryColor} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+        <path d="M123 55 L122 62 L115 62" stroke={secondaryColor} strokeWidth="1.2" strokeLinecap="round" fill="none" />
+
+        <path d="M88 70 C75 75, 70 65, 78 58" stroke={secondaryColor} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+        <path d="M77 65 L78 58 L85 58" stroke={secondaryColor} strokeWidth="1.2" strokeLinecap="round" fill="none" />
+      </svg>
+    );
+  }
+
   if (normTitle.includes('artificial intelligence') || normTitle.includes('generative ai') || normTitle.includes('nlp') || normTitle.includes('computer vision')) {
     // Artificial Intelligence -> AI Brain, Neural Network, Nodes
     return (

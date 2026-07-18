@@ -54,7 +54,7 @@ const Footer = () => {
         <div className="container-custom py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 rounded-2xl bg-white/5 border border-white/10 px-8 py-8 backdrop-blur-sm">
             <div>
-              <h3 className="text-xl font-700 text-white mb-1" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}>
+              <h3 className="text-xl font-700 text-white mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 }}>
                 Ready to transform your business?
               </h3>
               <p className="text-white/60 text-sm">Let's discuss your data and AI goals today.</p>

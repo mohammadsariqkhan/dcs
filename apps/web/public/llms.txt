@@ -1,0 +1,13 @@
+## Pages
+- [- Our Store](/productdetail): No description available
+- [About Us – DataCloud Solutions](/about): Learn about DataCloud Solutions, our mission, values, and the team behind our data and AI consulting services.
+- [Advanced Analytics Services – DataCloud Solutions](/advancedanalytics): Go beyond descriptive BI. We deliver time-series forecasting, behavioral customer segmentation, risk models, and prescriptive optimization solutions.
+- [Agentic AI & Autonomous Systems – DataCloud Solutions](/agenticai): Deploy collaborative multi-agent systems, secure tool-calling frameworks, and cognitive RAG pipelines. Built with LangGraph, LangChain, and OpenAI.
+- [AI & Machine Learning Services – DataCloud Solutions](/aiml): Unlock enterprise intelligence with custom machine learning models, generative AI, NLP, computer vision, and MLOps deployment.
+- [Cloud Solutions & DevOps Services – DataCloud Solutions](/cloudsolutions): Accelerate cloud adoption with AWS, Azure, and GCP. Kubernetes orchestration, DevOps CI/CD pipelines, and cost optimization audits.
+- [Company – DataCloud Solutions](/company): Learn about DataCloud Solutions company, our leadership team, mission, vision, and technology partnerships.
+- [Contact Us – DataCloud Solutions](/contact): Get in touch with DataCloud Solutions. Schedule a consultation to discuss your data, AI, and cloud needs.
+- [Data Analytics & Business Intelligence – DataCloud Solutions](/dataanalytics): Transform raw database tables into stunning interactive dashboards. Experts in Power BI, Tableau, Looker Studio, and self-service analytics.
+- [Data Engineering Services – DataCloud Solutions](/dataengineering): Build reliable, scalable cloud data infrastructure. Specialists in ETL/ELT, Lakehouses, Databricks, Snowflake, and streaming architectures.
+- [Order Successful - DataCloud Solutions](/success): Your order has been successfully placed. Thank you for your purchase.
+- [Our Services – DataCloud Solutions](/services): Comprehensive data, AI, and cloud services including machine learning, data engineering, analytics, and cloud solutions.

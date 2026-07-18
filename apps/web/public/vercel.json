@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!assets/|images/|logo\\.svg|logo_alt\\.svg|vercel\\.json|_redirects|\\.htaccess).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

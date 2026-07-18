@@ -52,13 +52,13 @@ const StatCard = ({ number, label, index, icon: Icon, variant = 'default' }) => 
     >
       {Icon && (
         <div className="mb-3 flex justify-center">
-          <Icon size={24} className={isLight ? 'text-white/80' : 'text-[hsl(213_94%_38%)]'} />
+          <Icon size={24} className={isLight ? 'text-white/80' : 'text-primary dark:text-blue-400'} />
         </div>
       )}
-      <div className={`text-4xl md:text-5xl font-800 mb-2 ${isLight ? 'text-white' : 'text-[hsl(213_94%_38%)]'}`} style={{ fontWeight: 800, letterSpacing: '-0.04em' }}>
+      <div className={`text-4xl md:text-5xl font-800 mb-2 ${isLight ? 'text-white' : 'text-primary dark:text-blue-400'}`} style={{ fontWeight: 800, letterSpacing: '-0.04em' }}>
         {inView ? animated : 0}{suffix}
       </div>
-      <p className={`text-sm font-500 tracking-wide ${isLight ? 'text-white/70' : 'text-[hsl(215_20%_50%)]'}`} style={{ fontWeight: 500 }}>
+      <p className={`text-sm font-500 tracking-wide ${isLight ? 'text-white/70' : 'text-slate-500 dark:text-slate-400'}`} style={{ fontWeight: 500 }}>
         {label}
       </p>
     </motion.div>

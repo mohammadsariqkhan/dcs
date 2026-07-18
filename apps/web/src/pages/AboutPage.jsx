@@ -75,7 +75,7 @@ const AboutPage = () => {
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/25 text-blue-300 text-xs font-600 tracking-wider uppercase mb-6" style={{ fontWeight: 600 }}>
                 About Us
               </span>
-              <h1 className="text-4xl md:text-5xl font-800 text-white mb-5 max-w-3xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h1 className="text-4xl md:text-5xl font-800 text-white mb-5 max-w-3xl mx-auto" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 Transforming Businesses Through Data
               </h1>
               <p className="text-white/65 text-lg leading-relaxed max-w-2xl mx-auto">
@@ -85,7 +85,7 @@ const AboutPage = () => {
           </div>
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" style={{ display: 'block', width: '100%' }}>
-              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="white" />
+              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="currentColor" className="text-white dark:text-[hsl(var(--background))]" />
             </svg>
           </div>
         </section>
@@ -96,10 +96,10 @@ const AboutPage = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                 <span className="section-label mb-5 inline-flex">Our Story</span>
-                <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+                <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                   Born from a Vision to Make Data Work
                 </h2>
-                <div className="space-y-4 text-[hsl(215_20%_42%)] leading-relaxed text-base">
+                <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base">
                   <p>Founded in 2015, DataCloud Solutions emerged from a simple observation: organizations were sitting on vast amounts of data but struggling to extract meaningful value from it.</p>
                   <p>Our founding team of data engineers,data scientists, ML engineers, and cloud architects came together with a shared vision: to help businesses unlock the power of their data through cutting-edge AI, analytics, and cloud technologies.</p>
                   <p>Today, we've grown into a trusted partner for 10+ enterprise clients across healthcare, finance, retail, manufacturing, and more. Our team has delivered 100+ successful projects, from building real-time ML pipelines to migrating petabyte-scale data warehouses to the cloud.</p>
@@ -112,7 +112,7 @@ const AboutPage = () => {
               </motion.div>
 
               <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="flex flex-col gap-6 relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-elevated border border-slate-100 bg-slate-900 group" style={{ height: '440px' }}>
+                <div className="relative rounded-2xl overflow-hidden shadow-elevated border border-slate-100 dark:border-slate-800 bg-slate-900 group" style={{ height: '440px' }}>
                   <motion.img
                     key={activeStoryTab}
                     src={storyVisuals[activeStoryTab].image}
@@ -123,7 +123,7 @@ const AboutPage = () => {
                     className="w-full h-full object-cover transition-all duration-300 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
-                  
+
                   {/* Image overlay caption */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
                     <p className="text-xs font-600 text-blue-400 uppercase tracking-widest mb-1.5" style={{ fontWeight: 600 }}>{storyVisuals[activeStoryTab].title}</p>
@@ -137,7 +137,7 @@ const AboutPage = () => {
                     className="absolute top-4 right-4 glass rounded-xl shadow-elevated px-3 py-1.5 border border-white/10"
                   >
                     <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Founded</p>
-                    <p className="text-lg font-800 text-[hsl(213_94%_38%)] leading-none" style={{ fontWeight: 800 }}>2015</p>
+                    <p className="text-lg font-800 text-primary dark:text-blue-400 leading-none" style={{ fontWeight: 800 }}>2015</p>
                   </motion.div>
                 </div>
 
@@ -147,11 +147,10 @@ const AboutPage = () => {
                     <button
                       key={idx}
                       onClick={() => setActiveStoryTab(idx)}
-                      className={`px-4 py-2 rounded-xl text-xs font-700 border transition-all duration-200 ${
-                        activeStoryTab === idx
-                          ? 'bg-[hsl(213_94%_38%)] border-[hsl(213_94%_38%)] text-white shadow-soft'
-                          : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
+                      className={`px-4 py-2 rounded-xl text-xs font-700 border transition-all duration-200 ${activeStoryTab === idx
+                        ? 'bg-[hsl(213_94%_38%)] border-[hsl(213_94%_38%)] text-white shadow-soft'
+                        : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400 hover:border-gray-300 dark:hover:border-slate-655 hover:bg-gray-50 dark:hover:bg-slate-700'
+                        }`}
                       style={{ fontWeight: 700 }}
                     >
                       {visual.tabLabel}
@@ -164,14 +163,14 @@ const AboutPage = () => {
         </section>
 
         {/* Our Approach */}
-        <section className="py-24 bg-[hsl(214_32%_97%)]">
+        <section className="py-24 bg-[hsl(214_32%_97%)] dark:bg-slate-900/50">
           <div className="container-custom">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
               <span className="section-label mb-4 inline-flex">Our Approach</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 How We Deliver Success
               </h2>
-              <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">A proven methodology built on transparency, collaboration, and measurable outcomes</p>
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">A proven methodology built on transparency, collaboration, and measurable outcomes</p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -183,11 +182,11 @@ const AboutPage = () => {
                   className="card-premium p-7 relative group"
                 >
                   <div className="text-5xl font-800 mb-4 leading-none"
-                    style={{ fontWeight: 800, color: 'hsl(213 94% 38% / 0.12)', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    style={{ fontWeight: 800, color: 'hsl(213 94% 38% / 0.80)', fontFamily: "'Space Grotesk', sans-serif" }}>
                     {step.num}
                   </div>
-                  <h3 className="text-lg font-700 text-[hsl(222_47%_11%)] mb-3" style={{ fontWeight: 700 }}>{step.title}</h3>
-                  <p className="text-sm text-[hsl(215_20%_50%)] leading-relaxed">{step.description}</p>
+                  <h3 className="text-lg font-700 text-slate-900 dark:text-white mb-3" style={{ fontWeight: 700 }}>{step.title}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{step.description}</p>
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 gradient-primary" />
                 </motion.div>
               ))}
@@ -200,10 +199,10 @@ const AboutPage = () => {
           <div className="container-custom">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
               <span className="section-label mb-4 inline-flex">Our Values</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 Principles That Guide Our Work
               </h2>
-              <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">The core beliefs that shape every project and partnership</p>
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">The core beliefs that shape every project and partnership</p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -219,8 +218,8 @@ const AboutPage = () => {
                     <value.icon size={22} style={{ color: value.color }} />
                   </div>
                   <div>
-                    <h3 className="text-base font-700 text-[hsl(222_47%_11%)] mb-2" style={{ fontWeight: 700 }}>{value.title}</h3>
-                    <p className="text-sm text-[hsl(215_20%_50%)] leading-relaxed">{value.description}</p>
+                    <h3 className="text-base font-700 text-slate-900 dark:text-white mb-2" style={{ fontWeight: 700 }}>{value.title}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{value.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -229,14 +228,14 @@ const AboutPage = () => {
         </section>
 
         {/* Achievements */}
-        <section className="py-24 bg-[hsl(214_32%_97%)]">
+        <section className="py-24 bg-[hsl(214_32%_97%)] dark:bg-slate-900/50">
           <div className="container-custom">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
               <span className="section-label mb-4 inline-flex">Track Record</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 Certifications & Achievements
               </h2>
-              <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">Recognition of our expertise and commitment to excellence</p>
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">Recognition of our expertise and commitment to excellence</p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
@@ -256,7 +255,7 @@ const AboutPage = () => {
                   ) : (
                     <CheckCircle2 size={18} className="text-emerald-500 flex-shrink-0" />
                   )}
-                  <span className="text-sm font-500 text-[hsl(222_47%_18%)]" style={{ fontWeight: 500 }}>{item.text}</span>
+                  <span className="text-sm font-500 text-slate-800 dark:text-slate-200" style={{ fontWeight: 500 }}>{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -275,7 +274,7 @@ const AboutPage = () => {
               <div className="absolute top-0 left-1/4 w-80 h-80 rounded-full bg-white/10 blur-[80px] pointer-events-none" />
               <div className="relative z-10">
                 <TrendingUp size={40} className="mx-auto mb-4 text-white/80" />
-                <h2 className="text-3xl md:text-4xl font-800 text-white mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+                <h2 className="text-3xl md:text-4xl font-800 text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                   Join Us on Your Data Journey
                 </h2>
                 <p className="text-white/75 max-w-xl mx-auto mb-8 text-base">

@@ -27,9 +27,9 @@ const fadeUp = {
 };
 
 const inputClass = `
-  w-full px-4 py-3 rounded-xl border text-sm text-[hsl(222_47%_11%)] placeholder-gray-400
-  bg-white border-gray-200
-  focus:outline-none focus:border-[hsl(213_94%_38%)] focus:ring-2 focus:ring-[hsl(213_94%_38%/0.12)]
+  w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500
+  bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700
+  focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/12 dark:focus:border-blue-400 dark:focus:ring-blue-400/12
   transition-all duration-200
 `.trim();
 
@@ -37,6 +37,8 @@ const ContactPage = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', service: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const API_URL = import.meta.env.VITE_API_URL || "https://dcs-backend-kappa.vercel.app";
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -55,11 +57,28 @@ const ContactPage = () => {
       return;
     }
 
-    setTimeout(() => {
-      toast({ title: '✅ Message sent!', description: "Thank you for reaching out. We'll respond within 24 hours." });
-      setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast({ title: '✅ Message sent!', description: "Thank you for reaching out. We'll respond within 24 hours." });
+        setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+      } else if (res.status === 429) {
+        toast({ variant: 'destructive', title: 'Too many attempts', description: 'Please wait a moment before trying again.' });
+      } else {
+        toast({ variant: 'destructive', title: 'Something went wrong', description: data.detail || 'Please try again later.' });
+      }
+    } catch (err) {
+      toast({ variant: 'destructive', title: 'Network error', description: 'Could not reach the server. Please check your connection.' });
+    } finally {
       setIsSubmitting(false);
-    }, 1400);
+    }
   };
 
   const contactInfo = [
@@ -92,7 +111,7 @@ const ContactPage = () => {
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/25 text-blue-300 text-xs font-600 tracking-wider uppercase mb-6" style={{ fontWeight: 600 }}>
                 Contact Us
               </span>
-              <h1 className="text-4xl md:text-5xl font-800 text-white mb-5 max-w-2xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h1 className="text-4xl md:text-5xl font-800 text-white mb-5 max-w-2xl mx-auto" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 Let's Start a Conversation
               </h1>
               <p className="text-white/65 text-lg leading-relaxed max-w-xl mx-auto">
@@ -102,7 +121,7 @@ const ContactPage = () => {
           </div>
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" style={{ display: 'block', width: '100%' }}>
-              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="white" />
+              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="currentColor" className="text-white dark:text-[hsl(var(--background))]" />
             </svg>
           </div>
         </section>
@@ -121,21 +140,21 @@ const ContactPage = () => {
                 className="lg:col-span-3"
               >
                 <div className="card-premium p-8 md:p-10">
-                  <h2 className="text-2xl font-800 text-[hsl(222_47%_11%)] mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+                  <h2 className="text-2xl font-800 text-slate-900 dark:text-white mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                     Send Us a Message
                   </h2>
-                  <p className="text-sm text-[hsl(215_20%_50%)] mb-8">Fill out the form below and we'll get back to you within one business day.</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">Fill out the form below and we'll get back to you within one business day.</p>
 
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label htmlFor="name" className="block text-xs font-600 text-[hsl(222_47%_20%)] mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
+                        <label htmlFor="name" className="block text-xs font-600 text-slate-800 dark:text-slate-200 mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
                           Full Name *
                         </label>
                         <input id="name" name="name" type="text" value={formData.name} onChange={handleChange} required placeholder="John Smith" className={inputClass} />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-xs font-600 text-[hsl(222_47%_20%)] mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
+                        <label htmlFor="email" className="block text-xs font-600 text-slate-800 dark:text-slate-200 mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
                           Work Email *
                         </label>
                         <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="john@company.com" className={inputClass} />
@@ -144,13 +163,13 @@ const ContactPage = () => {
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label htmlFor="phone" className="block text-xs font-600 text-[hsl(222_47%_20%)] mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
+                        <label htmlFor="phone" className="block text-xs font-600 text-slate-800 dark:text-slate-200 mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
                           Phone Number
                         </label>
                         <input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+971 50 000 0000" className={inputClass} />
                       </div>
                       <div>
-                        <label htmlFor="company" className="block text-xs font-600 text-[hsl(222_47%_20%)] mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
+                        <label htmlFor="company" className="block text-xs font-600 text-slate-800 dark:text-slate-200 mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
                           Company
                         </label>
                         <input id="company" name="company" type="text" value={formData.company} onChange={handleChange} placeholder="Your company" className={inputClass} />
@@ -158,11 +177,11 @@ const ContactPage = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="service" className="block text-xs font-600 text-[hsl(222_47%_20%)] mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
+                      <label htmlFor="service" className="block text-xs font-600 text-slate-800 dark:text-slate-200 mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
                         Service Interested In
                       </label>
                       <select id="service" name="service" value={formData.service} onChange={handleChange}
-                        className={inputClass + ' cursor-pointer appearance-none bg-white'}
+                        className={inputClass + ' cursor-pointer appearance-none bg-white dark:bg-slate-800'}
                         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
                       >
                         <option value="">Select a service...</option>
@@ -171,7 +190,7 @@ const ContactPage = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-xs font-600 text-[hsl(222_47%_20%)] mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
+                      <label htmlFor="message" className="block text-xs font-600 text-slate-800 dark:text-slate-200 mb-1.5 uppercase tracking-wide" style={{ fontWeight: 600 }}>
                         Message *
                       </label>
                       <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} placeholder="Tell us about your project or challenge..." className={inputClass} style={{ resize: 'vertical', minHeight: '120px' }} />
@@ -190,7 +209,7 @@ const ContactPage = () => {
                       )}
                     </button>
 
-                    <p className="text-xs text-gray-400 text-center">By submitting, you agree to our Privacy Policy. We respect your data.</p>
+                    <p className="text-xs text-gray-400 dark:text-slate-500 text-center">By submitting, you agree to our Privacy Policy. We respect your data.</p>
                   </form>
                 </div>
               </motion.div>
@@ -205,27 +224,27 @@ const ContactPage = () => {
               >
                 {/* Contact Details */}
                 <div className="card-premium p-7">
-                  <h3 className="text-lg font-700 text-[hsl(222_47%_11%)] mb-6" style={{ fontWeight: 700 }}>Contact Information</h3>
+                  <h3 className="text-lg font-700 text-slate-900 dark:text-white mb-6" style={{ fontWeight: 700 }}>Contact Information</h3>
                   <div className="space-y-5">
                     {contactInfo.map(({ icon: Icon, label, value, href }, i) => (
                       <div key={i} className="flex gap-4 group">
                         <div className="icon-box flex-shrink-0 group-hover:shadow-glow transition-all duration-300">
-                          <Icon size={18} style={{ color: 'hsl(213 94% 38%)' }} />
+                          <Icon size={18} style={{ color: 'hsl(var(--primary))' }} />
                         </div>
                         <div>
-                          <p className="text-xs font-600 text-gray-400 uppercase tracking-wide mb-0.5" style={{ fontWeight: 600 }}>{label}</p>
+                          <p className="text-xs font-600 text-gray-400 dark:text-slate-500 uppercase tracking-wide mb-0.5" style={{ fontWeight: 600 }}>{label}</p>
                           {href ? (
-                            <a href={href} className="text-sm font-500 text-[hsl(222_47%_15%)] hover:text-[hsl(213_94%_38%)] transition-colors duration-200" style={{ fontWeight: 500 }}>{value}</a>
+                            <a href={href} className="text-sm font-500 text-slate-850 dark:text-slate-200 hover:text-primary dark:hover:text-blue-400 transition-colors duration-200" style={{ fontWeight: 500 }}>{value}</a>
                           ) : (
-                            <p className="text-sm font-500 text-[hsl(222_47%_15%)]" style={{ fontWeight: 500 }}>{value}</p>
+                            <p className="text-sm font-500 text-slate-850 dark:text-slate-200" style={{ fontWeight: 500 }}>{value}</p>
                           )}
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-6 border-t border-gray-100">
-                    <p className="text-xs font-600 text-gray-400 uppercase tracking-wide mb-3" style={{ fontWeight: 600 }}>Follow Us</p>
+                  <div className="mt-6 pt-6 border-t border-gray-100 dark:border-slate-800">
+                    <p className="text-xs font-600 text-gray-400 dark:text-slate-500 uppercase tracking-wide mb-3" style={{ fontWeight: 600 }}>Follow Us</p>
                     <div className="flex gap-2">
                       {[
                         { icon: Linkedin, href: 'https://www.linkedin.com/company/datacloudsolution/', label: 'LinkedIn' },
@@ -233,7 +252,7 @@ const ContactPage = () => {
                         { icon: Instagram, href: 'https://www.instagram.com/datacloudsolution', label: 'Instagram' }
                       ].map(({ icon: Icon, href, label }) => (
                         <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                          className="w-9 h-9 rounded-lg bg-gray-50 hover:bg-[hsl(213_94%_38%/0.08)] hover:text-[hsl(213_94%_38%)] flex items-center justify-center transition-all duration-200 border border-gray-200 text-gray-500">
+                          className="w-9 h-9 rounded-lg bg-gray-50 dark:bg-slate-800 hover:bg-[hsl(213_94%_38%/0.08)] dark:hover:bg-blue-500/10 hover:text-primary dark:hover:text-blue-400 flex items-center justify-center transition-all duration-200 border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-400">
                           <Icon size={16} />
                         </a>
                       ))}
@@ -243,7 +262,7 @@ const ContactPage = () => {
 
                 {/* What to Expect */}
                 <div className="card-premium p-7">
-                  <h3 className="text-base font-700 text-[hsl(222_47%_11%)] mb-4" style={{ fontWeight: 700 }}>What to Expect</h3>
+                  <h3 className="text-base font-700 text-slate-900 dark:text-white mb-4" style={{ fontWeight: 700 }}>What to Expect</h3>
                   <div className="space-y-3">
                     {[
                       'Response within 24 business hours',
@@ -251,7 +270,7 @@ const ContactPage = () => {
                       'Custom solution proposal within 5 days',
                       'No long-term commitment required',
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-2.5 text-sm text-[hsl(215_20%_40%)]">
+                      <div key={i} className="flex items-center gap-2.5 text-sm text-slate-655 dark:text-slate-300">
                         <CheckCircle2 size={15} className="text-emerald-500 flex-shrink-0" />
                         {item}
                       </div>
@@ -260,7 +279,7 @@ const ContactPage = () => {
                 </div>
 
                 {/* Image */}
-                <div className="rounded-2xl overflow-hidden border border-slate-100 shadow-elevated group">
+                <div className="rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-elevated group">
                   <img
                     src="/images/hero_workspace.png"
                     alt="Modern AI-inspired office workspace"
@@ -274,14 +293,14 @@ const ContactPage = () => {
         </section>
 
         {/* Offices */}
-        <section className="py-20 bg-[hsl(214_32%_97%)]">
+        <section className="py-20 bg-[hsl(214_32%_97%)] dark:bg-slate-900/50">
           <div className="container-custom">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-12">
               <span className="section-label mb-4 inline-flex">Our Offices</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 Visit Us
               </h2>
-              <p className="text-[hsl(215_20%_50%)] text-center max-w-2xl mx-auto">
+              <p className="text-slate-500 dark:text-slate-400 text-center max-w-2xl mx-auto">
                 Our regional headquarters serving clients globally
               </p>
             </motion.div>
@@ -294,19 +313,19 @@ const ContactPage = () => {
                   variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
                   className="card-premium p-7"
                 >
-                  <h3 className="text-xl font-800 text-[hsl(222_47%_11%)] mb-5" style={{ fontWeight: 800 }}>{office.city}</h3>
+                  <h3 className="text-xl font-800 text-slate-900 dark:text-white mb-5" style={{ fontWeight: 800 }}>{office.city}</h3>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <MapPin size={16} className="mt-0.5 flex-shrink-0" style={{ color: 'hsl(213 94% 38%)' }} />
-                      <p className="text-sm text-[hsl(215_20%_50%)]">{office.address}</p>
+                      <MapPin size={16} className="mt-0.5 flex-shrink-0 text-primary dark:text-blue-400" />
+                      <p className="text-sm text-slate-500 dark:text-slate-400">{office.address}</p>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Phone size={16} className="flex-shrink-0" style={{ color: 'hsl(213 94% 38%)' }} />
-                      <a href={`tel:${office.phone}`} className="text-sm text-[hsl(215_20%_50%)] hover:text-[hsl(213_94%_38%)] transition-colors duration-200">{office.phone}</a>
+                      <Phone size={16} className="flex-shrink-0 text-primary dark:text-blue-400" />
+                      <a href={`tel:${office.phone}`} className="text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-blue-400 transition-colors duration-200">{office.phone}</a>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Mail size={16} className="flex-shrink-0" style={{ color: 'hsl(213 94% 38%)' }} />
-                      <a href={`mailto:${office.email}`} className="text-sm text-[hsl(215_20%_50%)] hover:text-[hsl(213_94%_38%)] transition-colors duration-200">{office.email}</a>
+                      <Mail size={16} className="flex-shrink-0 text-primary dark:text-blue-400" />
+                      <a href={`mailto:${office.email}`} className="text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-blue-400 transition-colors duration-200">{office.email}</a>
                     </div>
                   </div>
                 </motion.div>

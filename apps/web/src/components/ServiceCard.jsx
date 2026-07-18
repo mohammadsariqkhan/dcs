@@ -27,38 +27,11 @@ const ServiceCard = ({ icon: Icon, title, description, benefits, technologies, i
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="card-premium group cursor-pointer flex flex-col h-full"
-      style={{ padding: '2rem' }}
+      style={{ padding: '1rem' }}
     >
-      {/* Icon Container (at the top) */}
-      <div className="mb-6">
-        <div className="icon-box group-hover:shadow-glow transition-all duration-300"
-          style={{
-            background: 'linear-gradient(135deg, hsl(213 94% 38% / 0.1), hsl(199 89% 48% / 0.07))',
-            border: '1px solid hsl(213 94% 38% / 0.15)'
-          }}
-        >
-          {partnerName ? (
-            <TechIcon name={partnerName} size={24} color="hsl(213 94% 38%)" />
-          ) : (
-            <Icon className="h-6 w-6" style={{ color: 'hsl(213 94% 38%)' }} />
-          )}
-        </div>
-      </div>
-
-      {/* Service Title */}
-      <h3 className="text-xl font-800 text-[hsl(222_47%_11%)] mb-3 leading-snug capitalize"
-        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
-        {title}
-      </h3>
-
-      {/* Short Description */}
-      <p className="text-sm text-[hsl(215_20%_50%)] leading-relaxed mb-6">
-        {description}
-      </p>
-
       {/* Image or Illustration */}
       {showIllustration && (
-        <div className="w-full h-44 flex items-center justify-center mb-6 bg-gradient-to-br from-slate-50 to-blue-50/20 rounded-xl border border-slate-100/50 overflow-hidden relative group-hover:border-blue-500/10 transition-all duration-300 shadow-sm">
+        <div className="w-full h-44 flex items-center justify-center mb-6 bg-gradient-to-br from-slate-50 to-blue-50/20 dark:from-slate-800 dark:to-blue-950/20 rounded-md border border-slate-100/50 dark:border-slate-800 overflow-hidden relative group-hover:border-blue-500/10 dark:group-hover:border-blue-400/20 transition-all duration-300 shadow-sm">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -71,13 +44,42 @@ const ServiceCard = ({ icon: Icon, title, description, benefits, technologies, i
           )}
         </div>
       )}
+      {/* Icon Container (at the top) */}
+
+
+      {/* Icon + Title */}
+      <div className="flex items-center gap-4 mb-4">
+        <div className="icon-box group-hover:shadow-glow transition-all duration-300"
+          style={{
+            background: 'linear-gradient(135deg, hsl(213 94% 38% / 0.1), hsl(199 89% 48% / 0.07))',
+            border: '1px solid hsl(213 94% 38% / 0.15)'
+          }}
+        >
+          <Icon className="h-6 w-6" style={{ color: 'hsl(213 94% 38%)' }} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-700 text-[hsl(222_47%_11%)] dark:text-white mb-1.5 leading-snug capitalize"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 }}>
+            {title}
+          </h3>
+        </div>
+      </div>
+
+
+
+
+
+      {/* Short Description */}
+      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+        {description}
+      </p>
 
       {/* Benefits */}
       {benefits && benefits.length > 0 && (
         <div className="mb-6">
           <ul className="space-y-2">
             {benefits.map((benefit, idx) => (
-              <li key={idx} className="flex items-center gap-2.5 text-sm text-[hsl(222_47%_25%)]">
+              <li key={idx} className="flex items-center gap-2.5 text-sm text-slate-800 dark:text-slate-300">
                 <CheckCircle2 size={14} className="text-emerald-500 flex-shrink-0" />
                 <span>{benefit}</span>
               </li>
@@ -104,7 +106,7 @@ const ServiceCard = ({ icon: Icon, title, description, benefits, technologies, i
       <div className="pt-2">
         <button
           onClick={onCTAClick}
-          className="flex items-center gap-2 text-sm font-700 text-[hsl(213_94%_38%)] group-hover:gap-3 transition-all duration-200"
+          className="flex items-center gap-2 text-sm font-700 text-primary dark:text-blue-400 group-hover:gap-3 transition-all duration-200"
           style={{ fontWeight: 700, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
         >
           Learn more

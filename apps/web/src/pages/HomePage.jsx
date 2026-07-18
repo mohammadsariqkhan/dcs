@@ -266,7 +266,7 @@ const HomePage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.1 }}
                   className="text-4xl md:text-5xl lg:text-[3.5rem] font-800 text-white leading-[1.12] mb-6"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}
+                  style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}
                 >
                   Transforming Businesses with{' '}
                   <span className="text-gradient-white">Data, AI & Cloud</span>{' '}
@@ -337,11 +337,10 @@ const HomePage = () => {
                       <button
                         key={idx}
                         onClick={() => setActiveHeroTab(idx)}
-                        className={`flex-1 py-2 rounded-lg text-[10px] font-700 tracking-wider uppercase transition-all duration-200 ${
-                          activeHeroTab === idx
-                            ? 'bg-blue-600 text-white shadow-soft'
-                            : 'text-white/70 hover:text-white hover:bg-white/5'
-                        }`}
+                        className={`flex-1 py-2 rounded-lg text-[10px] font-700 tracking-wider uppercase transition-all duration-200 ${activeHeroTab === idx
+                          ? 'bg-blue-600 text-white shadow-soft'
+                          : 'text-white/70 hover:text-white hover:bg-white/5'
+                          }`}
                         style={{ fontWeight: 700 }}
                       >
                         {tab.label}
@@ -370,8 +369,8 @@ const HomePage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="absolute -left-6 top-20 glass rounded-xl px-4 py-3 shadow-elevated z-10"
                   >
-                    <div className="text-[10px] text-gray-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>{heroTabs[activeHeroTab].metricTitle}</div>
-                    <div className="text-xl font-800 text-[hsl(213_94%_38%)]" style={{ fontWeight: 800 }}>{heroTabs[activeHeroTab].metricValue}</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>{heroTabs[activeHeroTab].metricTitle}</div>
+                    <div className="text-xl font-800 text-primary dark:text-blue-400" style={{ fontWeight: 800 }}>{heroTabs[activeHeroTab].metricValue}</div>
                   </motion.div>
 
                   <motion.div
@@ -379,7 +378,7 @@ const HomePage = () => {
                     transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
                     className="absolute -right-6 bottom-16 glass rounded-xl px-4 py-3 shadow-elevated z-10"
                   >
-                    <div className="text-[10px] text-gray-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Cost Reduction</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Cost Reduction</div>
                     <div className="text-xl font-800 text-emerald-600" style={{ fontWeight: 800 }}>-47%</div>
                   </motion.div>
 
@@ -388,10 +387,10 @@ const HomePage = () => {
                     transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                     className="absolute left-1/2 -translate-x-1/2 -bottom-5 glass rounded-xl px-4 py-3 shadow-elevated z-10"
                   >
-                    <div className="text-[10px] text-gray-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Client Satisfaction</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-600 uppercase tracking-wider mb-0.5" style={{ fontWeight: 600 }}>Client Satisfaction</div>
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => <Star key={i} size={13} className="text-amber-400 fill-amber-400" />)}
-                      <span className="text-xs font-700 text-gray-700 ml-1" style={{ fontWeight: 700 }}>99%</span>
+                      <span className="text-xs font-700 text-gray-700 dark:text-slate-200 ml-1" style={{ fontWeight: 700 }}>99%</span>
                     </div>
                   </motion.div>
                 </div>
@@ -402,15 +401,15 @@ const HomePage = () => {
           {/* Bottom wave */}
           <div className="absolute bottom-0 left-0 right-0">
             <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ display: 'block', width: '100%' }}>
-              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="white" />
+              <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20Z" fill="currentColor" className="text-white dark:text-[hsl(var(--background))]" />
             </svg>
           </div>
         </section>
 
         {/* ── PARTNER LOGOS ── */}
-        <section className="py-12 border-b border-gray-100">
+        <section className="py-12 border-b border-gray-100 dark:border-slate-800/60">
           <div className="container-custom">
-            <p className="text-center text-xs font-600 text-gray-400 uppercase tracking-widest mb-8" style={{ fontWeight: 600 }}>
+            <p className="text-center text-xs font-600 text-gray-400 dark:text-slate-500 uppercase tracking-widest mb-8" style={{ fontWeight: 600 }}>
               Trusted technology partnerships
             </p>
             <LogoMarquee items={partners} speed="25s" />
@@ -442,17 +441,17 @@ const HomePage = () => {
         </section>
 
         {/* ── SERVICES ── */}
-        <section className="py-24 bg-[hsl(214_32%_97%)]">
+        <section className="py-24 bg-[hsl(214_32%_97%)] dark:bg-slate-900/50">
           <div className="container-custom">
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
               className="text-center mb-16"
             >
               <span className="section-label mb-4 inline-flex">Our Expertise</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 End-to-End Data Analytics, AI & Cloud Solutions
               </h2>
-              <p className="text-[hsl(215_20%_50%)] max-w-2xl mx-auto text-lg font-600">
+              <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-lg font-600">
                 Niche. Focused. All Things Data.
               </p>
             </motion.div>
@@ -483,10 +482,10 @@ const HomePage = () => {
               <div>
                 <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
                   <span className="section-label mb-4 inline-flex">Why DataCloud</span>
-                  <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+                  <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                     What Sets Us Apart in Data Analytics, AI & Cloud Advisory
                   </h2>
-                  <p className="text-[hsl(215_20%_50%)] mb-10 text-base leading-relaxed">
+                  <p className="text-slate-500 dark:text-slate-400 mb-10 text-base leading-relaxed">
                     We combine deep technical expertise with business acumen to deliver solutions that create measurable, lasting impact for our clients.
                   </p>
                 </motion.div>
@@ -500,13 +499,13 @@ const HomePage = () => {
                       className="flex gap-4 group"
                     >
                       <div className="icon-box flex-shrink-0 group-hover:shadow-glow transition-all duration-300">
-                        <item.icon size={22} style={{ color: 'hsl(213 94% 38%)' }} />
+                        <item.icon size={22} className="text-primary dark:text-blue-400" />
                       </div>
                       <div>
-                        <h3 className="text-base font-700 text-[hsl(222_47%_11%)] mb-1.5" style={{ fontWeight: 700 }}>
+                        <h3 className="text-base font-700 text-slate-900 dark:text-white mb-1.5" style={{ fontWeight: 700 }}>
                           {item.title}
                         </h3>
-                        <p className="text-sm text-[hsl(215_20%_50%)] leading-relaxed">{item.description}</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -523,7 +522,7 @@ const HomePage = () => {
                 <img
                   src="/images/why_us_dashboard.png"
                   alt="Modern data analytics dashboard preview"
-                  className="rounded-2xl border border-slate-100 shadow-elevated w-full object-cover"
+                  className="rounded-2xl border border-slate-100 dark:border-slate-800 shadow-elevated w-full object-cover"
                   style={{ height: '500px' }}
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-[hsl(213_94%_38%/0.04)]" />
@@ -533,20 +532,20 @@ const HomePage = () => {
         </section>
 
         {/* ── OUR WORKFLOW ── */}
-        <section className="py-24 bg-white relative overflow-hidden border-t border-gray-50">
+        <section className="py-24 bg-white dark:bg-[hsl(var(--background))] relative overflow-hidden border-t border-gray-50 dark:border-slate-800/30">
           <div className="absolute inset-0 bg-grid-pattern opacity-10" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
-          
+
           <div className="container-custom relative z-10">
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
               className="text-center mb-20"
             >
               <span className="section-label mb-4 inline-flex">Our Process</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 The Enterprise Data Lifecycle
               </h2>
-              <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
                 How we construct secure, scalable, and value-driven data platforms step by step
               </p>
             </motion.div>
@@ -554,7 +553,7 @@ const HomePage = () => {
             {/* Horizontal Timeline Flow on Desktop, Grid on Mobile */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-6 relative">
               {/* Connector line for large screens */}
-              <div className="hidden lg:block absolute top-[44px] left-[5%] right-[5%] h-0.5 bg-gray-100 -z-10" />
+              <div className="hidden lg:block absolute top-[44px] left-[5%] right-[5%] h-0.5 bg-gray-100 dark:bg-slate-800 -z-10" />
 
               {processSteps.map((step, idx) => (
                 <motion.div
@@ -567,14 +566,10 @@ const HomePage = () => {
                 >
                   {/* Step bubble */}
                   <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 border transition-all duration-300 relative group-hover:scale-110 shadow-sm"
-                    style={{
-                      background: 'white',
-                      borderColor: 'hsl(214_32%_91%)',
-                    }}
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 border transition-all duration-300 relative group-hover:scale-110 shadow-sm bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
                   >
                     <step.icon size={22} style={{ color: step.color }} />
-                    <span 
+                    <span
                       className="absolute -top-2 -right-2 text-[10px] font-800 px-2 py-0.5 rounded-full text-white"
                       style={{ background: step.color }}
                     >
@@ -582,10 +577,10 @@ const HomePage = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-sm font-800 text-[hsl(222_47%_11%)] mb-2" style={{ fontWeight: 800 }}>
+                  <h3 className="text-sm font-800 text-slate-900 dark:text-white mb-2" style={{ fontWeight: 800 }}>
                     {step.title}
                   </h3>
-                  <p className="text-xs text-[hsl(215_20%_50%)] leading-relaxed max-w-[150px]">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[150px]">
                     {step.description}
                   </p>
                 </motion.div>
@@ -595,19 +590,19 @@ const HomePage = () => {
         </section>
 
         {/* ── INDUSTRIES ── */}
-        <section className="py-24 bg-[hsl(214_32%_97%)]">
+        <section className="py-24 bg-[hsl(214_32%_97%)] dark:bg-slate-900/50">
           <div className="container-custom">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
               <span className="section-label mb-4 inline-flex">Industries</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-slate-900 dark:text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 Serving Diverse Sectors
               </h2>
-              <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
                 Deep domain expertise across the industries that matter most
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {industries.map((industry, i) => (
                 <motion.div
                   key={i}
@@ -615,18 +610,13 @@ const HomePage = () => {
                   variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
                   className="card-premium p-5 flex flex-col justify-between gap-4 group cursor-default h-full"
                 >
-                  {/* Illustration */}
-                  <div className="w-full h-24 flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50/20 rounded-lg border border-slate-100/50 overflow-hidden relative">
-                    <Illustration title={industry.name} className="w-full h-full max-h-[80px]" color={industry.color} />
-                  </div>
-
                   {/* Icon + Title */}
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-105"
                       style={{ background: `${industry.color}14`, border: `1px solid ${industry.color}28` }}>
                       <industry.icon size={15} style={{ color: industry.color }} />
                     </div>
-                    <span className="text-xs sm:text-sm font-700 text-[hsl(222_47%_18%)] leading-snug" style={{ fontWeight: 700 }}>
+                    <span className="text-xs sm:text-sm font-700 text-slate-800 dark:text-slate-200 leading-snug" style={{ fontWeight: 700 }}>
                       {industry.name}
                     </span>
                   </div>
@@ -637,11 +627,11 @@ const HomePage = () => {
         </section>
 
         {/* ── TESTIMONIALS ── */}
-        <section className="py-24 border-t border-gray-50">
+        {/* <section className="py-24 border-t border-gray-50">
           <div className="container-custom">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
               <span className="section-label mb-4 inline-flex">Client Stories</span>
-              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+              <h2 className="text-3xl md:text-4xl font-800 text-[hsl(222_47%_11%)] mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                 Real Results, Real Partnerships
               </h2>
               <p className="text-[hsl(215_20%_50%)] max-w-xl mx-auto">
@@ -681,7 +671,7 @@ const HomePage = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* ── CTA ── */}
         <section className="py-24">
@@ -699,7 +689,7 @@ const HomePage = () => {
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white/90 text-xs font-600 tracking-wider uppercase mb-5" style={{ fontWeight: 600 }}>
                   Get Started Today
                 </span>
-                <h2 className="text-3xl md:text-4xl font-800 text-white mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
+                <h2 className="text-3xl md:text-4xl font-800 text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
                   Ready to Transform Your Data Strategy?
                 </h2>
                 <p className="text-white/75 max-w-xl mx-auto mb-8 text-base leading-relaxed">

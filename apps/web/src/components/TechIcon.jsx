@@ -1,5 +1,6 @@
 import React from 'react';
 import { resolveTechIcon } from '@/lib/techIconMap';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const TechIcon = ({
   name,
@@ -8,6 +9,8 @@ const TechIcon = ({
   color,
 }) => {
   const config = resolveTechIcon(name);
+  const { theme } = useTheme();
+
   if (!config) return null;
 
   if (config.type === 'lucide') {
@@ -16,14 +19,28 @@ const TechIcon = ({
       <Icon
         size={size}
         className={`flex-shrink-0 tech-icon-lucide transition-all duration-200 ${className}`}
-        style={{ color: color ?? 'hsl(213 94% 38%)' }}
+        style={{ color: color ?? 'hsl(var(--primary))' }}
         aria-label={title}
         role="img"
       />
     );
   }
 
-  const fillColor = color ?? `#${config.hex}`;
+  let fillColor = color ?? `#${config.hex}`;
+  if (!color && config.hex && theme === 'dark') {
+    try {
+      const hex = config.hex.toLowerCase().padStart(6, '0');
+      const r = parseInt(hex.substring(0, 2), 16);
+      const g = parseInt(hex.substring(2, 4), 16);
+      const b = parseInt(hex.substring(4, 6), 16);
+      const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+      if (yiq < 80) {
+        fillColor = 'currentColor';
+      }
+    } catch (e) {
+      // fallback
+    }
+  }
 
   return (
     <svg
